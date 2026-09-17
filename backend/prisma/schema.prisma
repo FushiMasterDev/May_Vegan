@@ -1,0 +1,12 @@
+// Mây Vegan - Prisma schema
+// Data models are defined in Phase 2 (Database). This file currently only
+// wires up the datasource/generator so `prisma generate` works during scaffolding.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}

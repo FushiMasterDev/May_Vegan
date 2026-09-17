@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Playfair Display', 'Be Vietnam Pro', serif;
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+
+  /* Mây Vegan brand palette — xanh lá tự nhiên / olive / kem / nâu gỗ / vàng nhấn */
+  --color-brand-50: #f3f7ee;
+  --color-brand-100: #e4edd6;
+  --color-brand-200: #c9dbaf;
+  --color-brand-300: #abc586;
+  --color-brand-400: #8cad63;
+  --color-brand-500: #6f9349;
+  --color-brand-600: #567539;
+  --color-brand-700: #435c2e;
+  --color-brand-800: #374a27;
+  --color-brand-900: #2e3d21;
+
+  --color-olive-500: #7a7a4f;
+  --color-olive-600: #5f5f3d;
+
+  --color-cream-50: #fdfbf6;
+  --color-cream-100: #faf5ea;
+  --color-cream-200: #f2e9d6;
+
+  --color-wood-400: #b08e6a;
+  --color-wood-500: #8b6a4f;
+  --color-wood-600: #6b4f3a;
+
+  --color-accent-400: #e3c37e;
+  --color-accent-500: #d4a94f;
+  --color-accent-600: #b8893a;
+}
+
+:root {
+  --bg-app: var(--color-cream-50);
+  --bg-surface: #ffffff;
+  --text-primary: var(--color-brand-900);
+  --text-muted: var(--color-brand-700);
+  --border-subtle: var(--color-brand-100);
+}
+
+:root[data-theme='dark'] {
+  --bg-app: #1b1f17;
+  --bg-surface: #242a1e;
+  --text-primary: var(--color-cream-100);
+  --text-muted: var(--color-brand-200);
+  --border-subtle: #333a29;
+}
+
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+}
