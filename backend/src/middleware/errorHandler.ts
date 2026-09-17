@@ -42,6 +42,12 @@ export function errorHandler(err: unknown, req: Request, res: Response, _next: N
         message: 'Không tìm thấy dữ liệu',
       });
     }
+    if (err.code === 'P2003') {
+      return res.status(409).json({
+        success: false,
+        message: 'Không thể thực hiện vì dữ liệu đang được tham chiếu ở nơi khác',
+      });
+    }
   }
 
   console.error(err);

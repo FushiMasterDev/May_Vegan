@@ -53,16 +53,21 @@ việc ẩn UI ở frontend.
 - Query qua Prisma (prepared statement) — không nối chuỗi SQL thủ công.
 - CORS giới hạn theo `CORS_ORIGIN`, Helmet bật các header bảo mật mặc định.
 
-## 6. Trạng thái hiện tại (Phase 2)
+## 6. Trạng thái hiện tại (Phase 3)
 
 - Phase 1: scaffold kiến trúc, build sạch (typecheck + build) cho cả `frontend/` và `backend/`.
-- Phase 2: `database/schema.sql` (19 bảng, đã áp thành công vào MySQL thật) +
-  `database/seed.sql` (dữ liệu demo thực tế, đã kiểm tra chéo tổng tiền đơn hàng,
-  tồn kho, rating, điểm tích luỹ đều khớp). `backend/prisma/schema.prisma` được
-  đồng bộ với DB thật qua `prisma db pull`, sau đó đổi tên model/field sang
-  PascalCase/camelCase (giữ nguyên tên bảng/cột MySQL qua `@@map`/`@map`).
-  Quy trình thay đổi schema: sửa `database/schema.sql` → áp lại vào MySQL →
-  chạy `npx prisma db pull` → đối chiếu và đổi tên trong `schema.prisma` →
-  `npx prisma generate`.
-- Chưa có business logic API hay UI đầy đủ — sẽ triển khai ở Phase 3 (Backend)
-  và Phase 4 (Frontend).
+- Phase 2: `database/schema.sql` (19 bảng) + `database/seed.sql`, đã áp và kiểm tra
+  chéo trên MySQL thật. `backend/prisma/schema.prisma` đồng bộ qua `prisma db pull`
+  rồi đổi tên PascalCase/camelCase.
+- Phase 3: toàn bộ business logic backend (xem `docs/api.md` cho danh sách endpoint
+  đầy đủ) — auth (JWT access+refresh, đổi/quên mật khẩu), danh mục, món ăn
+  (search/filter/sort/pagination, upload ảnh), đơn hàng (tạo đơn khách vãng lai/đã
+  đăng nhập, áp coupon, chuyển trạng thái, chuyển bàn, huỷ đơn, tự động cập nhật
+  sold_count/điểm tích luỹ/tồn kho bàn khi hoàn thành), bàn, đặt bàn (kiểm tra bàn
+  trống theo khung giờ), khách hàng, nhân viên (ADMIN only), nguyên liệu + kho
+  (nhập/xuất/điều chỉnh/kiểm kê, cảnh báo tồn thấp), nhà cung cấp, khuyến mãi
+  (validate coupon), đánh giá (chỉ trên đơn COMPLETED, tự tính lại rating sản
+  phẩm), dashboard và báo cáo doanh thu (export CSV). Toàn bộ đã test thật qua
+  curl trên server + MySQL thật (không phải mock) — xem lịch sử test trong quá
+  trình Phase 3.
+- Chưa có UI — sẽ triển khai ở Phase 4 (Frontend).
