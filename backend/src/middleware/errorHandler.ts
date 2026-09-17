@@ -1,10 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
+import { Prisma } from '@prisma/client';
 import { AppError } from '../utils/AppError';
 import { env } from '../config/env';
-
-// Prisma-specific error mapping (unique constraint, not-found, etc.) is added
-// in Phase 2 once the Prisma schema/models exist and the client is generated.
 
 export function notFoundHandler(req: Request, res: Response) {
   res.status(404).json({
@@ -28,6 +26,22 @@ export function errorHandler(err: unknown, req: Request, res: Response, _next: N
       message: 'Dữ liệu không hợp lệ',
       details: err.flatten().fieldErrors,
     });
+  }
+
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    if (err.code === 'P2002') {
+      return res.status(409).json({
+        success: false,
+        message: 'Dữ liệu đã tồn tại (trùng giá trị duy nhất)',
+        details: err.meta,
+      });
+    }
+    if (err.code === 'P2025') {
+      return res.status(404).json({
+        success: false,
+        message: 'Không tìm thấy dữ liệu',
+      });
+    }
   }
 
   console.error(err);

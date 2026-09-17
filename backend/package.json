@@ -11,9 +11,10 @@
     "lint": "eslint . --ext .ts",
     "typecheck": "tsc --noEmit",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
+    "prisma:pull": "prisma db pull",
     "prisma:studio": "prisma studio",
-    "db:seed": "tsx prisma/seed.ts"
+    "db:schema": "prisma db execute --file ../database/schema.sql --schema prisma/schema.prisma",
+    "db:seed": "prisma db execute --file ../database/seed.sql --schema prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",

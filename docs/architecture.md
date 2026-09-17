@@ -53,8 +53,16 @@ việc ẩn UI ở frontend.
 - Query qua Prisma (prepared statement) — không nối chuỗi SQL thủ công.
 - CORS giới hạn theo `CORS_ORIGIN`, Helmet bật các header bảo mật mặc định.
 
-## 6. Trạng thái hiện tại (Phase 1)
+## 6. Trạng thái hiện tại (Phase 2)
 
-Đã scaffold xong kiến trúc, build sạch (typecheck + build) cho cả `frontend/` và `backend/`.
-Chưa có schema DB, business logic, hay UI đầy đủ — sẽ triển khai ở Phase 2 (Database),
-Phase 3 (Backend) và Phase 4 (Frontend).
+- Phase 1: scaffold kiến trúc, build sạch (typecheck + build) cho cả `frontend/` và `backend/`.
+- Phase 2: `database/schema.sql` (19 bảng, đã áp thành công vào MySQL thật) +
+  `database/seed.sql` (dữ liệu demo thực tế, đã kiểm tra chéo tổng tiền đơn hàng,
+  tồn kho, rating, điểm tích luỹ đều khớp). `backend/prisma/schema.prisma` được
+  đồng bộ với DB thật qua `prisma db pull`, sau đó đổi tên model/field sang
+  PascalCase/camelCase (giữ nguyên tên bảng/cột MySQL qua `@@map`/`@map`).
+  Quy trình thay đổi schema: sửa `database/schema.sql` → áp lại vào MySQL →
+  chạy `npx prisma db pull` → đối chiếu và đổi tên trong `schema.prisma` →
+  `npx prisma generate`.
+- Chưa có business logic API hay UI đầy đủ — sẽ triển khai ở Phase 3 (Backend)
+  và Phase 4 (Frontend).

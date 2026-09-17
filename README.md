@@ -2,41 +2,61 @@
 
 Hệ thống quản lý & đặt món quán ăn chay Mây Vegan.
 
-> README này sẽ được hoàn thiện đầy đủ (cài đặt, seed DB, tài khoản demo...) ở Phase 8.
-> Hiện tại (Phase 1) mới có scaffold kiến trúc.
+> README này sẽ được hoàn thiện đầy đủ ở Phase 8. Hiện tại (Phase 2) đã có
+> kiến trúc + database, chưa có business logic API hay UI đầy đủ.
 
 ## Cấu trúc
 
 ```
 frontend/   React + TypeScript + Vite + Tailwind CSS
 backend/    Node.js + Express + TypeScript + Prisma
-database/   schema.sql / seed.sql (tham chiếu song song với Prisma migration)
+database/   schema.sql / seed.sql (nguồn sự thật cho cấu trúc DB — Prisma schema đồng bộ qua db pull)
 docs/       architecture.md, api.md
 ```
 
-## Chạy dev (scaffold hiện tại)
+## Cài đặt
 
-### Backend
+### 1. Database (MySQL 8+)
+
+Tạo database và user riêng cho project (thay `<password>` bằng mật khẩu bạn chọn):
+
+```sql
+CREATE DATABASE mayvegan CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'mayvegan_app'@'localhost' IDENTIFIED BY '<password>';
+GRANT ALL PRIVILEGES ON mayvegan.* TO 'mayvegan_app'@'localhost';
+FLUSH PRIVILEGES;
+```
 
 ```bash
 cd backend
-cp .env.example .env   # rồi chỉnh DATABASE_URL trỏ tới MySQL local
+cp .env.example .env   # chỉnh DATABASE_URL="mysql://mayvegan_app:<password>@localhost:3306/mayvegan"
 npm install
-npm run dev             # http://localhost:4000, GET /api/health
+npm run db:schema       # áp database/schema.sql (chỉ chạy trên DB rỗng, tạo 19 bảng)
+npm run db:seed         # áp database/seed.sql (dữ liệu demo, có thể chạy lại nhiều lần)
+npm run prisma:generate # sinh Prisma Client khớp với schema hiện tại
 ```
 
-### Frontend
+Tài khoản demo sau khi seed: xem `database/seed-accounts.md`.
+
+### 2. Backend
+
+```bash
+cd backend
+npm run dev              # http://localhost:4000, GET /api/health
+```
+
+### 3. Frontend
 
 ```bash
 cd frontend
 npm install
-npm run dev              # http://localhost:5173, proxy /api -> backend :4000
+npm run dev               # http://localhost:5173, proxy /api -> backend :4000
 ```
 
 ## Trạng thái
 
 - [x] Phase 1 — Kiến trúc & scaffold (frontend/backend build sạch)
-- [ ] Phase 2 — Database (schema.sql, seed.sql, Prisma schema)
+- [x] Phase 2 — Database (schema.sql, seed.sql, Prisma schema đồng bộ, đã test trên MySQL thật)
 - [ ] Phase 3 — Backend (auth, products, orders, tables, reservations, customers, inventory, coupons, reviews, dashboard, reports)
 - [ ] Phase 4 — Frontend (landing, menu, cart, checkout, reservation, auth, profile, admin)
 - [ ] Phase 5 — Integration
