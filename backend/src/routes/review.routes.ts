@@ -4,6 +4,7 @@ import { authenticate, authorize } from '../middleware/auth';
 
 const router = Router();
 
+router.get('/recent', reviewController.listRecent);
 router.get('/', authenticate, authorize('ADMIN', 'MANAGER'), reviewController.listAll);
 router.post('/', authenticate, authorize('CUSTOMER'), reviewController.create);
 router.put('/:id/hide', authenticate, authorize('ADMIN', 'MANAGER'), reviewController.hide);

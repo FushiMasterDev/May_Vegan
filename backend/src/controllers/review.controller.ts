@@ -5,6 +5,12 @@ import { AppError } from '../utils/AppError';
 import * as reviewService from '../services/review.service';
 import { createReviewSchema, listReviewQuerySchema } from '../validators/review.validator';
 
+export const listRecent = asyncHandler(async (req: Request, res: Response) => {
+  const limit = req.query.limit ? Number(req.query.limit) : 6;
+  const items = await reviewService.listRecentVisible(limit);
+  res.json({ success: true, data: items });
+});
+
 export const listByProduct = asyncHandler(async (req: Request, res: Response) => {
   const productId = parseIdParam(req.params.id);
   const { page, limit } = req.query as { page?: string; limit?: string };

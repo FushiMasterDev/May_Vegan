@@ -18,6 +18,18 @@ async function recomputeProductRating(productId: number) {
   });
 }
 
+export async function listRecentVisible(limit: number) {
+  return prisma.review.findMany({
+    where: { status: 'VISIBLE', rating: { gte: 4 }, comment: { not: null } },
+    orderBy: { createdAt: 'desc' },
+    take: limit,
+    include: {
+      customer: { include: { user: { select: { fullName: true, avatarUrl: true } } } },
+      product: { select: { id: true, name: true, slug: true } },
+    },
+  });
+}
+
 export async function listByProduct(productId: number, query: { page?: string; limit?: string }) {
   const { page, limit, skip, take } = parsePagination(query);
   const where = { productId, status: 'VISIBLE' as const };

@@ -81,6 +81,14 @@ export async function createReservation(customerId: number | null, input: Create
   });
 }
 
+export async function listMyReservations(customerId: number) {
+  return prisma.reservation.findMany({
+    where: { customerId },
+    orderBy: { createdAt: 'desc' },
+    include: { table: true },
+  });
+}
+
 export async function listReservations(query: { date?: string; status?: ReservationStatus; page?: string; limit?: string }) {
   const { page, limit, skip, take } = parsePagination(query);
   const where = {

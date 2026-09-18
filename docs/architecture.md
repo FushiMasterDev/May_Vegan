@@ -70,4 +70,18 @@ việc ẩn UI ở frontend.
   phẩm), dashboard và báo cáo doanh thu (export CSV). Toàn bộ đã test thật qua
   curl trên server + MySQL thật (không phải mock) — xem lịch sử test trong quá
   trình Phase 3.
-- Chưa có UI — sẽ triển khai ở Phase 4 (Frontend).
+- Phase 4: toàn bộ frontend — site khách hàng (trang chủ, thực đơn với
+  search/filter/sort/pagination, chi tiết món, giỏ hàng, thanh toán khách vãng
+  lai/đã đăng nhập, theo dõi đơn, đặt bàn có kiểm tra bàn trống, đăng ký/đăng
+  nhập/quên-đặt lại mật khẩu, hồ sơ khách hàng) và admin dashboard đầy đủ
+  (tổng quan có biểu đồ, đơn hàng, sơ đồ bàn + tạo đơn tại bàn, thực đơn có
+  upload ảnh, danh mục, nguyên liệu, kho, khách hàng, nhân viên, khuyến mãi,
+  đánh giá, doanh thu, báo cáo có export CSV, cài đặt), route guard theo role,
+  responsive/mobile-first, dark mode qua CSS variables. Build + typecheck
+  sạch cho cả frontend/backend; admin pages được code-split (lazy load) khỏi
+  bundle chính để trang khách hàng tải nhanh hơn.
+- Một vài giới hạn phạm vi có chủ đích: chưa có ảnh món ăn thật (dùng
+  placeholder có thiết kế, admin có thể upload qua chức năng đã hoàn thiện);
+  không có "tuỳ chọn topping" riêng (dùng trường ghi chú món); không có cổng
+  thanh toán online thật (chỉ Tiền mặt/Chuyển khoản ở checkout khách hàng,
+  tránh giả lập luồng thanh toán không có thật).

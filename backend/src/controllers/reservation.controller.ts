@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ReservationStatus } from '@prisma/client';
 import { asyncHandler } from '../utils/asyncHandler';
 import { parseIdParam } from '../utils/parseId';
+import { AppError } from '../utils/AppError';
 import { prisma } from '../config/database';
 import * as reservationService from '../services/reservation.service';
 import {
@@ -29,6 +30,14 @@ export const create = asyncHandler(async (req: Request, res: Response) => {
       : null;
   const reservation = await reservationService.createReservation(customer?.id ?? null, input);
   res.status(201).json({ success: true, data: reservation });
+});
+
+export const myReservations = asyncHandler(async (req: Request, res: Response) => {
+  if (!req.user) throw AppError.unauthorized();
+  const customer = await prisma.customer.findUnique({ where: { userId: req.user.id } });
+  if (!customer) return res.json({ success: true, data: [] });
+  const reservations = await reservationService.listMyReservations(customer.id);
+  res.json({ success: true, data: reservations });
 });
 
 export const list = asyncHandler(async (req: Request, res: Response) => {

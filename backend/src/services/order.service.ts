@@ -22,8 +22,13 @@ export async function createOrder(
   actor: { customerId: number | null; employeeId?: number | null },
   input: CreateOrderInput
 ) {
-  if (!actor.customerId && (!input.guestName || !input.guestPhone)) {
-    throw AppError.badRequest('Vui lòng nhập họ tên và số điện thoại');
+  if (!actor.customerId) {
+    if (!input.guestName) throw AppError.badRequest('Vui lòng nhập họ tên');
+    // Đơn tại quán (nhân viên tạo tại bàn) không bắt buộc SĐT — khách được xác
+    // định qua bàn đang ngồi. Giao hàng/nhận tại quán cần SĐT để liên hệ.
+    if (input.orderType !== 'DINE_IN' && !input.guestPhone) {
+      throw AppError.badRequest('Vui lòng nhập số điện thoại');
+    }
   }
 
   const productIds = input.items.map((i) => i.productId);

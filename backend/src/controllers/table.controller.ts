@@ -12,6 +12,11 @@ export const list = asyncHandler(async (req: Request, res: Response) => {
   res.json({ success: true, data: tables });
 });
 
+export const areas = asyncHandler(async (_req: Request, res: Response) => {
+  const data = await tableService.listAreas();
+  res.json({ success: true, data });
+});
+
 export const getById = asyncHandler(async (req: Request, res: Response) => {
   const id = parseIdParam(req.params.id);
   const table = await tableService.getTable(id);

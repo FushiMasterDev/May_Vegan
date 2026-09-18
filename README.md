@@ -58,7 +58,7 @@ npm run dev               # http://localhost:5173, proxy /api -> backend :4000
 - [x] Phase 1 — Kiến trúc & scaffold (frontend/backend build sạch)
 - [x] Phase 2 — Database (schema.sql, seed.sql, Prisma schema đồng bộ, đã test trên MySQL thật)
 - [x] Phase 3 — Backend (auth, products, orders, tables, reservations, customers, employees, inventory, coupons, reviews, dashboard, reports — xem `docs/api.md`)
-- [ ] Phase 4 — Frontend (landing, menu, cart, checkout, reservation, auth, profile, admin)
+- [x] Phase 4 — Frontend (landing, menu, giỏ hàng, thanh toán, đặt bàn, auth, hồ sơ, admin đầy đủ)
 - [ ] Phase 5 — Integration
 - [ ] Phase 6 — Testing
 - [ ] Phase 7 — UI polish

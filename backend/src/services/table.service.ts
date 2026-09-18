@@ -13,6 +13,15 @@ export async function listTables(filter: { area?: string; status?: TableStatus }
   });
 }
 
+export async function listAreas(): Promise<string[]> {
+  const rows = await prisma.restaurantTable.findMany({
+    distinct: ['area'],
+    select: { area: true },
+    orderBy: { area: 'asc' },
+  });
+  return rows.map((r) => r.area);
+}
+
 export async function getTable(id: number) {
   const table = await prisma.restaurantTable.findUnique({ where: { id } });
   if (!table) throw AppError.notFound('Không tìm thấy bàn');

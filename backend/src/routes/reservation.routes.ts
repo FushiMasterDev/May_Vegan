@@ -7,6 +7,7 @@ const router = Router();
 router.get('/availability', reservationController.checkAvailability);
 router.post('/', optionalAuthenticate, reservationController.create);
 router.get('/code/:code', reservationController.getByCode);
+router.get('/mine', authenticate, authorize('CUSTOMER'), reservationController.myReservations);
 
 router.get('/', authenticate, authorize('ADMIN', 'MANAGER', 'STAFF'), reservationController.list);
 router.put(

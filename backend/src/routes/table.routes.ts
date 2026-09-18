@@ -6,6 +6,7 @@ const router = Router();
 
 const staffRoles = authorize('ADMIN', 'MANAGER', 'STAFF');
 
+router.get('/areas', tableController.areas);
 router.get('/', authenticate, staffRoles, tableController.list);
 router.get('/:id', authenticate, staffRoles, tableController.getById);
 router.post('/', authenticate, authorize('ADMIN', 'MANAGER'), tableController.create);
