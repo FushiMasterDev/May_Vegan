@@ -82,7 +82,7 @@ export default function ProductsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Thực đơn</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Thực đơn</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý món ăn, hình ảnh và trạng thái.</p>
         </div>
         <Button onClick={() => { setEditing(null); setFormOpen(true); }}>
@@ -128,7 +128,7 @@ export default function ProductsPage() {
                         <ProductImage src={getPrimaryImage(product)} alt={product.name} className="h-full w-full object-cover" />
                       </div>
                       <div>
-                        <p className="font-medium text-brand-900">{product.name}</p>
+                        <p className="font-medium text-[var(--text-primary)]">{product.name}</p>
                         <div className="flex gap-1">
                           {product.isFeatured && <Star size={12} className="text-accent-500" />}
                           {product.isBestSeller && <Flame size={12} className="text-orange-500" />}
@@ -347,7 +347,7 @@ function ProductFormModal({
         {product && (
           <div className="border-t border-[var(--border-subtle)] pt-4">
             <div className="mb-2 flex items-center justify-between">
-              <p className="flex items-center gap-1.5 text-sm font-medium text-brand-900">
+              <p className="flex items-center gap-1.5 text-sm font-medium text-[var(--text-primary)]">
                 <ImageIcon size={15} /> Hình ảnh
               </p>
               <Button variant="outline" size="sm" onClick={() => fileInputRef.current?.click()} isLoading={uploadMutation.isPending}>

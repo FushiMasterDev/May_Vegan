@@ -30,7 +30,7 @@ export function Dropdown({ trigger, items }: { trigger: ReactNode; items: Dropdo
                 setOpen(false);
                 item.onClick();
               }}
-              className={`flex w-full items-center gap-2 px-3.5 py-2 text-left text-sm hover:bg-cream-100 ${
+              className={`flex w-full items-center gap-2 px-3.5 py-2 text-left text-sm hover:bg-[var(--bg-accent-soft)] ${
                 item.danger ? 'text-red-600' : 'text-[var(--text-primary)]'
               }`}
             >

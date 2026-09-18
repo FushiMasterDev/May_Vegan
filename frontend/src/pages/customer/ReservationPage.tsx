@@ -104,13 +104,13 @@ export default function ReservationPage() {
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-brand-600">
             <CheckCircle2 size={32} />
           </div>
-          <h1 className="font-display text-3xl text-brand-900">Đặt bàn thành công!</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Đặt bàn thành công!</h1>
           <p className="text-sm text-[var(--text-muted)]">Vui lòng lưu mã đặt bàn để tiện đối chiếu khi đến quán.</p>
         </div>
 
         <div className="mt-8 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6">
           <p className="text-xs text-[var(--text-muted)]">Mã đặt bàn</p>
-          <p className="font-display text-2xl text-brand-900">{result.reservationCode}</p>
+          <p className="font-display text-2xl text-[var(--text-primary)]">{result.reservationCode}</p>
           <dl className="mt-4 space-y-2.5 text-sm">
             <div className="flex items-center gap-2">
               <Clock size={15} className="text-brand-500" />
@@ -142,7 +142,7 @@ export default function ReservationPage() {
     <div className="mx-auto max-w-xl px-4 py-14 sm:px-6">
       <div className="mb-8 text-center">
         <CalendarCheck className="mx-auto mb-3 text-brand-600" size={32} />
-        <h1 className="font-display text-3xl text-brand-900">Đặt bàn</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Đặt bàn</h1>
         <p className="mt-2 text-sm text-[var(--text-muted)]">Giữ chỗ trước để có bàn ưng ý tại Mây Vegan.</p>
       </div>
 
@@ -195,7 +195,7 @@ export default function ReservationPage() {
           <div
             className={`flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm ${
               availabilityQuery.isLoading
-                ? 'bg-cream-100 text-[var(--text-muted)]'
+                ? 'bg-[var(--bg-accent-soft)] text-[var(--text-muted)]'
                 : availabilityQuery.data?.available
                   ? 'bg-brand-50 text-brand-700'
                   : 'bg-red-50 text-red-600'

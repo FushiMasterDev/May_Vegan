@@ -27,7 +27,7 @@ export default function OrderTrackingPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
-      <h1 className="mb-2 font-display text-3xl text-brand-900">Tra cứu đơn hàng</h1>
+      <h1 className="mb-2 font-display text-3xl text-[var(--text-primary)]">Tra cứu đơn hàng</h1>
       <p className="mb-6 text-sm text-[var(--text-muted)]">Nhập mã đơn hàng để xem trạng thái xử lý.</p>
 
       <div className="flex gap-2">

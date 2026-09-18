@@ -48,7 +48,7 @@ export default function CategoriesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Danh mục</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Danh mục</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý danh mục thực đơn.</p>
         </div>
         <Button onClick={() => { setEditing(null); setFormOpen(true); }}>
@@ -69,7 +69,7 @@ export default function CategoriesPage() {
           <Tbody>
             {categories.map((c) => (
               <Tr key={c.id}>
-                <Td className="font-medium text-brand-900">{c.name}</Td>
+                <Td className="font-medium text-[var(--text-primary)]">{c.name}</Td>
                 <Td>{c._count?.products ?? 0}</Td>
                 <Td><Badge color={c.isActive ? 'green' : 'gray'}>{c.isActive ? 'Đang hiển thị' : 'Đã ẩn'}</Badge></Td>
                 <Td>

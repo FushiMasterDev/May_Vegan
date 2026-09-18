@@ -53,7 +53,7 @@ export function Modal({ open, onClose, title, children, footer, size = 'md' }: M
       >
         {title && (
           <div className="flex items-center justify-between border-b border-[var(--border-subtle)] px-5 py-4">
-            <h2 className="font-display text-lg text-brand-900">{title}</h2>
+            <h2 className="font-display text-lg text-[var(--text-primary)]">{title}</h2>
             <button
               onClick={onClose}
               aria-label="Đóng"

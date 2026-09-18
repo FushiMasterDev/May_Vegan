@@ -25,7 +25,7 @@ export function StatCard({
         </div>
         <div>
           <p className="text-xs text-[var(--text-muted)]">{label}</p>
-          <p className="font-display text-xl text-brand-900">{value}</p>
+          <p className="font-display text-xl text-[var(--text-primary)]">{value}</p>
         </div>
       </div>
     </div>

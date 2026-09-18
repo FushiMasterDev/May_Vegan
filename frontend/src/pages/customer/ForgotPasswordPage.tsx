@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-100 text-brand-600">
           <MailCheck size={26} />
         </div>
-        <h1 className="font-display text-2xl text-brand-900">Kiểm tra email của bạn</h1>
+        <h1 className="font-display text-2xl text-[var(--text-primary)]">Kiểm tra email của bạn</h1>
         <p className="text-sm text-[var(--text-muted)]">
           Nếu <strong>{email}</strong> tồn tại trong hệ thống, chúng tôi đã gửi hướng dẫn đặt lại mật khẩu.
         </p>
@@ -51,7 +51,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brand-900">Quên mật khẩu</h1>
+      <h1 className="font-display text-2xl text-[var(--text-primary)]">Quên mật khẩu</h1>
       <p className="mt-1 text-sm text-[var(--text-muted)]">Nhập email đã đăng ký để nhận hướng dẫn đặt lại mật khẩu.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">

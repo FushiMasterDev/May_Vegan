@@ -11,7 +11,7 @@ export function Table({ children }: { children: ReactNode }) {
 
 export function Thead({ children }: { children: ReactNode }) {
   return (
-    <thead className="bg-cream-100 text-xs font-semibold uppercase tracking-wide text-brand-700">
+    <thead className="bg-[var(--bg-accent-soft)] text-xs font-semibold uppercase tracking-wide text-brand-700">
       {children}
     </thead>
   );
@@ -26,7 +26,7 @@ export function Tbody({ children }: { children: ReactNode }) {
 }
 
 export function Tr({ children, className }: { children: ReactNode; className?: string }) {
-  return <tr className={`transition hover:bg-cream-50 ${className ?? ''}`}>{children}</tr>;
+  return <tr className={`transition hover:bg-[var(--bg-accent-soft)] ${className ?? ''}`}>{children}</tr>;
 }
 
 export function Td({ children, className }: { children: ReactNode; className?: string }) {

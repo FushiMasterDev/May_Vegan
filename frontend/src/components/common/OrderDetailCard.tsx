@@ -17,7 +17,7 @@ export function OrderDetailCard({ order }: { order: Order }) {
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[var(--border-subtle)] pb-4">
         <div>
           <p className="text-xs text-[var(--text-muted)]">Mã đơn hàng</p>
-          <p className="font-display text-xl text-brand-900">{order.orderCode}</p>
+          <p className="font-display text-xl text-[var(--text-primary)]">{order.orderCode}</p>
         </div>
         <div className="flex gap-2">
           <Badge color={ORDER_STATUS_META[order.status].color}>{ORDER_STATUS_META[order.status].label}</Badge>
@@ -84,7 +84,7 @@ export function OrderDetailCard({ order }: { order: Order }) {
             <dd>{formatCurrency(order.deliveryFee)}</dd>
           </div>
         )}
-        <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-brand-900">
+        <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-[var(--text-primary)]">
           <dt>Tổng cộng</dt>
           <dd>{formatCurrency(order.totalAmount)}</dd>
         </div>

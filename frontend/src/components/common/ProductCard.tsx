@@ -48,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="flex flex-1 flex-col gap-2 p-4">
         <Link to={`/menu/${product.slug}`}>
-          <h3 className="font-display text-base text-brand-900 line-clamp-1">{product.name}</h3>
+          <h3 className="font-display text-base text-[var(--text-primary)] line-clamp-1">{product.name}</h3>
         </Link>
         {product.description && (
           <p className="line-clamp-2 text-sm text-[var(--text-muted)]">{product.description}</p>

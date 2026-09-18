@@ -60,5 +60,5 @@ npm run dev               # http://localhost:5173, proxy /api -> backend :4000
 - [x] Phase 4 — Frontend (landing, menu, giỏ hàng, thanh toán, đặt bàn, auth, hồ sơ, admin đầy đủ)
 - [x] Phase 5 — Integration (đối chiếu toàn bộ endpoint FE↔BE, kiểm tra shape response khớp type, test luồng end-to-end thật qua CORS/proxy)
 - [x] Phase 6 — Testing (RBAC matrix, CRUD còn lại, tính tiền, validation, build/lint frontend)
-- [ ] Phase 7 — UI polish
+- [x] Phase 7 — UI polish (dark mode hoàn thiện, Error Boundary, favicon thương hiệu, rà soát responsive/typography)
 - [ ] Phase 8 — Final (README đầy đủ, tài khoản demo)

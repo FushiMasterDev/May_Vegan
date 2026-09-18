@@ -61,7 +61,7 @@ export default function ReviewsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Đánh giá</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Đánh giá</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Kiểm duyệt đánh giá từ khách hàng.</p>
       </div>
 
@@ -87,7 +87,7 @@ export default function ReviewsPage() {
             <Tbody>
               {data.data.map((r) => (
                 <Tr key={r.id}>
-                  <Td className="font-medium text-brand-900">{r.product?.name}</Td>
+                  <Td className="font-medium text-[var(--text-primary)]">{r.product?.name}</Td>
                   <Td>{r.customer?.user.fullName}</Td>
                   <Td><StarRating value={r.rating} size={13} /></Td>
                   <Td className="max-w-xs text-xs text-[var(--text-muted)]">{r.comment}</Td>

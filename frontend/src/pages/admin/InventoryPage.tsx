@@ -55,7 +55,7 @@ export default function InventoryPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Kho</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Kho</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Theo dõi nhập / xuất / điều chỉnh tồn kho.</p>
         </div>
         <Button onClick={() => setFormOpen(true)}>
@@ -110,7 +110,7 @@ export default function InventoryPage() {
             <Tbody>
               {transactions.data.map((tx) => (
                 <Tr key={tx.id}>
-                  <Td className="font-medium text-brand-900">{tx.ingredient?.name}</Td>
+                  <Td className="font-medium text-[var(--text-primary)]">{tx.ingredient?.name}</Td>
                   <Td><Badge color={TYPE_BADGE[tx.type]}>{TYPE_OPTIONS.find((t) => t.value === tx.type)?.label}</Badge></Td>
                   <Td className={Number(tx.quantity) < 0 ? 'text-red-600' : 'text-brand-700'}>
                     {Number(tx.quantity) > 0 ? '+' : ''}{tx.quantity} {tx.ingredient?.unit}

@@ -106,7 +106,7 @@ export default function OrdersPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Đơn hàng</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Đơn hàng</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý và xử lý đơn hàng của Mây Vegan.</p>
       </div>
 
@@ -160,7 +160,7 @@ export default function OrdersPage() {
             <Tbody>
               {data.data.map((order) => (
                 <Tr key={order.id}>
-                  <Td className="font-medium text-brand-900">{order.orderCode}</Td>
+                  <Td className="font-medium text-[var(--text-primary)]">{order.orderCode}</Td>
                   <Td>{order.customer?.user.fullName ?? order.guestName}</Td>
                   <Td>{order.orderType === 'DINE_IN' ? 'Tại quán' : order.orderType === 'DELIVERY' ? 'Giao hàng' : 'Nhận tại quán'}</Td>
                   <Td>{formatCurrency(order.totalAmount)}</Td>

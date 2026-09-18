@@ -87,7 +87,7 @@ export default function TablesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Sơ đồ bàn</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Sơ đồ bàn</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý trạng thái và tạo đơn tại bàn.</p>
         </div>
         {canManage && (
@@ -122,7 +122,7 @@ export default function TablesPage() {
                     STATUS_CARD_CLASSES[table.status]
                   )}
                 >
-                  <span className="font-display text-lg text-brand-900">{table.code}</span>
+                  <span className="font-display text-lg text-[var(--text-primary)]">{table.code}</span>
                   <span className="flex items-center gap-1 text-xs text-[var(--text-muted)]">
                     <Users size={12} /> {table.seats}
                   </span>

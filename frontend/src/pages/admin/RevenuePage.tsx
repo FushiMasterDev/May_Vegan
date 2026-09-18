@@ -27,7 +27,7 @@ export default function RevenuePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Doanh thu</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Doanh thu</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Theo dõi doanh thu theo thời gian.</p>
       </div>
 
@@ -44,20 +44,20 @@ export default function RevenuePage() {
           </div>
 
           <Card className="p-5">
-            <h2 className="font-display text-lg text-brand-900">Doanh thu theo ngày</h2>
+            <h2 className="font-display text-lg text-[var(--text-primary)]">Doanh thu theo ngày</h2>
             <RevenueAreaChart data={report.revenueByDay} />
           </Card>
 
           <div className="grid gap-6 lg:grid-cols-2">
             <Card className="p-5">
-              <h2 className="font-display text-lg text-brand-900">Doanh thu theo loại đơn</h2>
+              <h2 className="font-display text-lg text-[var(--text-primary)]">Doanh thu theo loại đơn</h2>
               <SimpleBarChart
                 data={report.revenueByOrderType.map((r) => ({ label: ORDER_TYPE_LABEL[r.orderType] ?? r.orderType, value: r.revenue }))}
                 valueFormatter={(v) => `${Math.round(v / 1000)}k`}
               />
             </Card>
             <Card className="p-5">
-              <h2 className="font-display text-lg text-brand-900">Top món bán chạy</h2>
+              <h2 className="font-display text-lg text-[var(--text-primary)]">Top món bán chạy</h2>
               <div className="mt-4">
                 <RankedBarList
                   items={report.topProducts.map((p) => ({ label: p.name, value: p.quantity, valueLabel: `${p.quantity} phần` }))}

@@ -8,7 +8,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-3.5 py-2.5 text-xs shadow-lg">
-      <p className="font-medium text-brand-900">{label}</p>
+      <p className="font-medium text-[var(--text-primary)]">{label}</p>
       <p className="mt-0.5 text-[var(--text-muted)]">{formatCurrency(payload[0].value)}</p>
     </div>
   );

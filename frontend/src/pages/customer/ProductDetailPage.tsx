@@ -92,7 +92,7 @@ export default function ProductDetailPage() {
             {isOutOfStock && <Badge color="gray">Hết hàng</Badge>}
           </div>
 
-          <h1 className="mt-3 font-display text-3xl text-brand-900">{product.name}</h1>
+          <h1 className="mt-3 font-display text-3xl text-[var(--text-primary)]">{product.name}</h1>
 
           <div className="mt-2 flex items-center gap-2 text-sm text-[var(--text-muted)]">
             <StarRating value={toNumber(product.ratingAvg)} />
@@ -113,7 +113,7 @@ export default function ProductDetailPage() {
             <p className="mt-4 text-sm leading-relaxed text-[var(--text-primary)]">{product.description}</p>
           )}
 
-          <dl className="mt-5 grid grid-cols-1 gap-3 rounded-2xl border border-[var(--border-subtle)] bg-cream-50 p-4 text-sm sm:grid-cols-2">
+          <dl className="mt-5 grid grid-cols-1 gap-3 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-accent-soft)] p-4 text-sm sm:grid-cols-2">
             {product.ingredientsText && (
               <div className="sm:col-span-2">
                 <dt className="font-medium text-brand-800">Thành phần</dt>
@@ -156,7 +156,7 @@ export default function ProductDetailPage() {
 
       {/* Reviews */}
       <section className="mt-16 border-t border-[var(--border-subtle)] pt-10">
-        <h2 className="font-display text-2xl text-brand-900">Đánh giá từ khách hàng</h2>
+        <h2 className="font-display text-2xl text-[var(--text-primary)]">Đánh giá từ khách hàng</h2>
         {!product.reviews || product.reviews.length === 0 ? (
           <p className="mt-4 text-sm text-[var(--text-muted)]">Chưa có đánh giá nào cho món này.</p>
         ) : (
@@ -164,7 +164,7 @@ export default function ProductDetailPage() {
             {product.reviews.map((r) => (
               <div key={r.id} className="rounded-2xl border border-[var(--border-subtle)] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-brand-900">{r.customer?.user.fullName}</span>
+                  <span className="text-sm font-medium text-[var(--text-primary)]">{r.customer?.user.fullName}</span>
                   <span className="text-xs text-[var(--text-muted)]">{formatDateTime(r.createdAt)}</span>
                 </div>
                 <StarRating value={r.rating} size={14} />

@@ -37,7 +37,7 @@ export function ConfirmDialog({
         >
           <AlertTriangle size={24} />
         </div>
-        <h3 className="font-display text-lg text-brand-900">{title}</h3>
+        <h3 className="font-display text-lg text-[var(--text-primary)]">{title}</h3>
         <p className="text-sm text-[var(--text-muted)]">{message}</p>
         <div className="mt-2 flex w-full gap-3">
           <Button variant="outline" fullWidth onClick={onCancel} disabled={isLoading}>

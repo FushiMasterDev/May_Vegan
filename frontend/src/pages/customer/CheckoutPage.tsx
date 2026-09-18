@@ -116,13 +116,13 @@ export default function CheckoutPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <h1 className="mb-8 font-display text-4xl text-brand-900">Thanh toán</h1>
+      <h1 className="mb-8 font-display text-4xl text-[var(--text-primary)]">Thanh toán</h1>
 
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="flex flex-col gap-6 lg:col-span-2">
           {/* Order type */}
           <div>
-            <h2 className="mb-3 text-sm font-semibold text-brand-900">Hình thức nhận hàng</h2>
+            <h2 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Hình thức nhận hàng</h2>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => setOrderType('PICKUP')}
@@ -147,7 +147,7 @@ export default function CheckoutPage() {
 
           {/* Customer info */}
           <div>
-            <h2 className="mb-3 text-sm font-semibold text-brand-900">Thông tin nhận hàng</h2>
+            <h2 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Thông tin nhận hàng</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Input
                 label="Họ tên"
@@ -197,7 +197,7 @@ export default function CheckoutPage() {
 
           {/* Payment method */}
           <div>
-            <h2 className="mb-3 text-sm font-semibold text-brand-900">Phương thức thanh toán</h2>
+            <h2 className="mb-3 text-sm font-semibold text-[var(--text-primary)]">Phương thức thanh toán</h2>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => updateField('paymentMethod', 'CASH')}
@@ -223,7 +223,7 @@ export default function CheckoutPage() {
 
         {/* Summary */}
         <div className="h-fit rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5">
-          <h2 className="font-display text-lg text-brand-900">Đơn hàng của bạn</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Đơn hàng của bạn</h2>
           <ul className="mt-4 flex flex-col gap-2 text-sm">
             {items.map((item) => (
               <li key={item.productId} className="flex justify-between gap-2">
@@ -251,7 +251,7 @@ export default function CheckoutPage() {
                 <dd>{formatCurrency(deliveryFee)}</dd>
               </div>
             )}
-            <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-brand-900">
+            <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-[var(--text-primary)]">
               <dt>Tổng cộng</dt>
               <dd>{formatCurrency(total)}</dd>
             </div>

@@ -23,7 +23,7 @@ export default function OrderSuccessPage() {
         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-brand-600">
           <CheckCircle2 size={32} />
         </div>
-        <h1 className="font-display text-3xl text-brand-900">Đặt hàng thành công!</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Đặt hàng thành công!</h1>
         <p className="text-sm text-[var(--text-muted)]">
           Cảm ơn bạn đã đặt món tại Mây Vegan. Vui lòng lưu lại mã đơn hàng để theo dõi.
         </p>

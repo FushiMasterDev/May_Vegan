@@ -21,12 +21,12 @@ function SectionHeading({ eyebrow, title, viewAllHref }: { eyebrow: string; titl
     <div className="mb-8 flex items-end justify-between">
       <div>
         <p className="text-sm font-medium uppercase tracking-wide text-accent-600">{eyebrow}</p>
-        <h2 className="mt-1 font-display text-3xl text-brand-900">{title}</h2>
+        <h2 className="mt-1 font-display text-3xl text-[var(--text-primary)]">{title}</h2>
       </div>
       {viewAllHref && (
         <Link
           to={viewAllHref}
-          className="hidden items-center gap-1 text-sm font-medium text-brand-700 hover:text-brand-900 sm:flex"
+          className="hidden items-center gap-1 text-sm font-medium text-brand-700 hover:text-[var(--text-primary)] sm:flex"
         >
           Xem tất cả <ArrowRight size={16} />
         </Link>
@@ -74,13 +74,13 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 to-[var(--bg-app)]">
+      <section className="relative overflow-hidden bg-[var(--bg-app)]">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 md:py-24 lg:px-8">
           <div>
             <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-brand-100 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-700">
               <Leaf size={14} /> Quán ăn chay thuần Việt
             </p>
-            <h1 className="font-display text-5xl leading-[1.1] text-brand-900 sm:text-6xl">Mây Vegan</h1>
+            <h1 className="font-display text-5xl leading-[1.1] text-[var(--text-primary)] sm:text-6xl">Mây Vegan</h1>
             <p className="mt-4 text-lg text-[var(--text-muted)]">Một chút xanh cho một ngày an lành.</p>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-[var(--text-muted)]">
               Thực đơn chay phong phú từ cơm, mì, lẩu đến tráng miệng — nấu mỗi ngày từ nguyên liệu tươi, phục vụ tận
@@ -106,6 +106,8 @@ export default function HomePage() {
           <div className="relative">
             <div className="aspect-[4/3] rounded-3xl bg-gradient-to-br from-brand-200 via-accent-100 to-cream-200 p-8 shadow-lg">
               <div className="grid h-full grid-cols-2 gap-4">
+                {/* Nền white/70 luôn sáng theo chủ đích (khối trang trí) nên chữ dùng
+                    màu cố định thay vì biến theme, tránh mất chữ khi bật dark mode. */}
                 <div className="flex flex-col justify-end rounded-2xl bg-white/70 p-4 backdrop-blur">
                   <Leaf className="mb-2 text-brand-600" size={22} />
                   <p className="text-sm font-semibold text-brand-900">100% thực vật</p>
@@ -116,7 +118,7 @@ export default function HomePage() {
                 </div>
                 <div className="col-span-2 flex flex-col justify-end rounded-2xl bg-white/70 p-4 backdrop-blur">
                   <p className="font-display text-2xl text-brand-800">26+ món chay</p>
-                  <p className="text-sm text-[var(--text-muted)]">từ khai vị đến tráng miệng</p>
+                  <p className="text-sm text-brand-700">từ khai vị đến tráng miệng</p>
                 </div>
               </div>
             </div>
@@ -132,7 +134,7 @@ export default function HomePage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-brand-600">
                 <u.icon size={20} />
               </div>
-              <p className="text-sm font-semibold text-brand-900">{u.title}</p>
+              <p className="text-sm font-semibold text-[var(--text-primary)]">{u.title}</p>
               <p className="text-xs leading-relaxed text-[var(--text-muted)]">{u.desc}</p>
             </div>
           ))}
@@ -191,7 +193,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-4 rounded-3xl border border-[var(--border-subtle)] bg-cream-100 px-6 py-12 text-center">
           <CalendarCheck className="text-brand-600" size={32} />
-          <h2 className="font-display text-3xl text-brand-900">Ghé Mây Vegan dùng bữa cùng người thân</h2>
+          <h2 className="font-display text-3xl text-[var(--text-primary)]">Ghé Mây Vegan dùng bữa cùng người thân</h2>
           <p className="max-w-lg text-sm text-[var(--text-muted)]">
             Giữ chỗ trước để có bàn ưng ý — chỉ mất chưa đến một phút.
           </p>

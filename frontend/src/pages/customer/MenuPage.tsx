@@ -96,7 +96,7 @@ export default function MenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8">
-        <h1 className="font-display text-4xl text-brand-900">Thực đơn</h1>
+        <h1 className="font-display text-4xl text-[var(--text-primary)]">Thực đơn</h1>
         <p className="mt-2 text-sm text-[var(--text-muted)]">Chọn món chay yêu thích của bạn — tất cả đều tươi mỗi ngày.</p>
       </div>
 

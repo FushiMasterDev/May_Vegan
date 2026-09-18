@@ -64,7 +64,7 @@ export default function EmployeesPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Nhân viên</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Nhân viên</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý tài khoản và phân quyền nhân viên.</p>
         </div>
         <Button onClick={() => { setEditing(null); setFormOpen(true); }}>
@@ -89,7 +89,7 @@ export default function EmployeesPage() {
               {data.data.map((emp) => (
                 <Tr key={emp.id}>
                   <Td className="text-xs text-[var(--text-muted)]">{emp.employeeCode}</Td>
-                  <Td className="font-medium text-brand-900">{emp.user.fullName}<br /><span className="text-xs font-normal text-[var(--text-muted)]">{emp.user.email}</span></Td>
+                  <Td className="font-medium text-[var(--text-primary)]">{emp.user.fullName}<br /><span className="text-xs font-normal text-[var(--text-muted)]">{emp.user.email}</span></Td>
                   <Td>{emp.position}</Td>
                   <Td><Badge color="blue">{ROLE_OPTIONS.find((r) => r.value === emp.user.role.name)?.label}</Badge></Td>
                   <Td><Badge color={emp.status === 'ACTIVE' ? 'green' : 'gray'}>{emp.status === 'ACTIVE' ? 'Đang làm việc' : 'Ngừng hoạt động'}</Badge></Td>

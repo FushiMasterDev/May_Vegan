@@ -36,7 +36,7 @@ export default function ReportsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Báo cáo</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Báo cáo</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Báo cáo doanh thu chi tiết, có thể xuất CSV.</p>
         </div>
         <Button variant="outline" onClick={handleExport} isLoading={isExporting}>
@@ -66,7 +66,7 @@ export default function ReportsPage() {
           </Card>
 
           <div>
-            <h2 className="mb-3 font-display text-lg text-brand-900">Doanh thu theo ngày</h2>
+            <h2 className="mb-3 font-display text-lg text-[var(--text-primary)]">Doanh thu theo ngày</h2>
             {report.revenueByDay.length === 0 ? (
               <EmptyState title="Không có dữ liệu" description="Không có đơn hàng hoàn thành trong khoảng thời gian này." />
             ) : (
@@ -82,7 +82,7 @@ export default function ReportsPage() {
           </div>
 
           <div>
-            <h2 className="mb-3 font-display text-lg text-brand-900">Top món bán chạy</h2>
+            <h2 className="mb-3 font-display text-lg text-[var(--text-primary)]">Top món bán chạy</h2>
             {report.topProducts.length === 0 ? (
               <EmptyState title="Không có dữ liệu" description="Chưa có món nào được bán trong khoảng thời gian này." />
             ) : (

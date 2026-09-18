@@ -64,7 +64,7 @@ export default function CustomersPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Khách hàng</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Khách hàng</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Danh sách khách hàng và lịch sử mua hàng.</p>
       </div>
 
@@ -84,7 +84,7 @@ export default function CustomersPage() {
             <Tbody>
               {data.data.map((c) => (
                 <Tr key={c.id}>
-                  <Td className="font-medium text-brand-900">{c.user.fullName}</Td>
+                  <Td className="font-medium text-[var(--text-primary)]">{c.user.fullName}</Td>
                   <Td className="text-xs text-[var(--text-muted)]">{c.user.email}<br />{c.user.phone}</Td>
                   <Td>{c.totalOrders}</Td>
                   <Td>{formatCurrency(c.totalSpent)}</Td>
@@ -112,22 +112,22 @@ export default function CustomersPage() {
         {detail && (
           <div className="flex flex-col gap-6">
             <div className="grid grid-cols-3 gap-3">
-              <div className="rounded-xl bg-cream-50 p-3 text-center">
+              <div className="rounded-xl bg-[var(--bg-accent-soft)] p-3 text-center">
                 <p className="font-display text-xl text-brand-800">{detail.totalOrders}</p>
                 <p className="text-xs text-[var(--text-muted)]">Đơn hàng</p>
               </div>
-              <div className="rounded-xl bg-cream-50 p-3 text-center">
+              <div className="rounded-xl bg-[var(--bg-accent-soft)] p-3 text-center">
                 <p className="font-display text-xl text-brand-800">{formatCurrency(detail.totalSpent)}</p>
                 <p className="text-xs text-[var(--text-muted)]">Đã chi tiêu</p>
               </div>
-              <div className="rounded-xl bg-cream-50 p-3 text-center">
+              <div className="rounded-xl bg-[var(--bg-accent-soft)] p-3 text-center">
                 <p className="font-display text-xl text-brand-800">{detail.loyaltyPoints}</p>
                 <p className="text-xs text-[var(--text-muted)]">Điểm tích luỹ</p>
               </div>
             </div>
 
             <div>
-              <h3 className="mb-2 text-sm font-semibold text-brand-900">Lịch sử đơn hàng</h3>
+              <h3 className="mb-2 text-sm font-semibold text-[var(--text-primary)]">Lịch sử đơn hàng</h3>
               {!detail.orders || detail.orders.length === 0 ? (
                 <p className="text-sm text-[var(--text-muted)]">Chưa có đơn hàng nào.</p>
               ) : (
@@ -146,7 +146,7 @@ export default function CustomersPage() {
             </div>
 
             <div>
-              <h3 className="mb-2 text-sm font-semibold text-brand-900">Lịch sử đặt bàn</h3>
+              <h3 className="mb-2 text-sm font-semibold text-[var(--text-primary)]">Lịch sử đặt bàn</h3>
               {!detail.reservations || detail.reservations.length === 0 ? (
                 <p className="text-sm text-[var(--text-muted)]">Chưa có lượt đặt bàn nào.</p>
               ) : (

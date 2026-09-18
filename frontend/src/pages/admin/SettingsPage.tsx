@@ -62,12 +62,12 @@ export default function SettingsPage() {
   return (
     <div className="flex max-w-xl flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Cài đặt</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Cài đặt</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý thông tin tài khoản quản trị của bạn.</p>
       </div>
 
       <Card className="p-6">
-        <h2 className="font-display text-lg text-brand-900">Thông tin cá nhân</h2>
+        <h2 className="font-display text-lg text-[var(--text-primary)]">Thông tin cá nhân</h2>
         <div className="mt-4 flex flex-col gap-4">
           <Input label="Email" value={user?.email ?? ''} disabled />
           <Input label="Họ tên" value={fullName} onChange={(e) => setFullName(e.target.value)} error={profileErrors.fullName} />
@@ -79,7 +79,7 @@ export default function SettingsPage() {
       </Card>
 
       <Card className="p-6">
-        <h2 className="font-display text-lg text-brand-900">Đổi mật khẩu</h2>
+        <h2 className="font-display text-lg text-[var(--text-primary)]">Đổi mật khẩu</h2>
         <div className="mt-4 flex flex-col gap-4">
           <Input label="Mật khẩu hiện tại" type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} error={passwordErrors.currentPassword} />
           <Input label="Mật khẩu mới" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} error={passwordErrors.newPassword} />

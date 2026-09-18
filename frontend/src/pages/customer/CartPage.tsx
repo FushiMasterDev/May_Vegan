@@ -66,7 +66,7 @@ export default function CartPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <h1 className="mb-8 font-display text-4xl text-brand-900">Giỏ hàng</h1>
+      <h1 className="mb-8 font-display text-4xl text-[var(--text-primary)]">Giỏ hàng</h1>
 
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="flex flex-col gap-4 lg:col-span-2">
@@ -80,7 +80,7 @@ export default function CartPage() {
               </div>
               <div className="flex flex-1 flex-col gap-2">
                 <div className="flex items-start justify-between gap-2">
-                  <Link to={`/menu/${item.slug}`} className="font-medium text-brand-900 hover:underline">
+                  <Link to={`/menu/${item.slug}`} className="font-medium text-[var(--text-primary)] hover:underline">
                     {item.name}
                   </Link>
                   <button
@@ -112,7 +112,7 @@ export default function CartPage() {
         </div>
 
         <div className="h-fit rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5">
-          <h2 className="font-display text-lg text-brand-900">Tạm tính</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Tạm tính</h2>
 
           <div className="mt-4 flex gap-2">
             {couponCode ? (
@@ -150,7 +150,7 @@ export default function CartPage() {
                 <dd>-{formatCurrency(discountAmount)}</dd>
               </div>
             )}
-            <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-brand-900">
+            <div className="flex justify-between border-t border-[var(--border-subtle)] pt-2.5 text-base font-semibold text-[var(--text-primary)]">
               <dt>Tổng cộng</dt>
               <dd>{formatCurrency(subtotal - discountAmount)}</dd>
             </div>

@@ -50,7 +50,7 @@ export default function CouponsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Khuyến mãi</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Khuyến mãi</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Quản lý mã giảm giá cho khách hàng.</p>
         </div>
         <Button onClick={() => { setEditing(null); setFormOpen(true); }}>
@@ -71,7 +71,7 @@ export default function CouponsPage() {
           <Tbody>
             {data.data.map((c) => (
               <Tr key={c.id}>
-                <Td className="font-medium text-brand-900">{c.code}<br /><span className="text-xs font-normal text-[var(--text-muted)]">{c.name}</span></Td>
+                <Td className="font-medium text-[var(--text-primary)]">{c.code}<br /><span className="text-xs font-normal text-[var(--text-muted)]">{c.name}</span></Td>
                 <Td>{c.discountType === 'PERCENT' ? `${c.discountValue}%` : formatCurrency(c.discountValue)}</Td>
                 <Td className="text-xs text-[var(--text-muted)]">
                   Đơn tối thiểu {formatCurrency(c.minOrderAmount)}

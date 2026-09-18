@@ -103,7 +103,7 @@ export function AdminCreateOrderModal({
       size="lg"
       footer={
         <div className="flex items-center justify-between">
-          <span className="font-display text-lg text-brand-900">{formatCurrency(subtotal)}</span>
+          <span className="font-display text-lg text-[var(--text-primary)]">{formatCurrency(subtotal)}</span>
           <Button onClick={handleSubmit} isLoading={mutation.isPending} disabled={items.length === 0}>
             Tạo đơn
           </Button>
@@ -114,7 +114,7 @@ export function AdminCreateOrderModal({
         <Input label="Tên khách (không bắt buộc)" placeholder={`Khách bàn ${tableLabel}`} value={guestName} onChange={(e) => setGuestName(e.target.value)} />
 
         <div>
-          <label className="text-sm font-medium text-brand-900">Thêm món</label>
+          <label className="text-sm font-medium text-[var(--text-primary)]">Thêm món</label>
           <Input leftIcon={<Search size={16} />} placeholder="Tìm món ăn..." value={search} onChange={(e) => setSearch(e.target.value)} className="mt-1.5" />
           {debouncedSearch && data && (
             <div className="mt-2 max-h-48 overflow-y-auto rounded-xl border border-[var(--border-subtle)]">
@@ -125,7 +125,7 @@ export function AdminCreateOrderModal({
                   <button
                     key={p.id}
                     onClick={() => addItem(p)}
-                    className="flex w-full items-center justify-between gap-2 border-b border-[var(--border-subtle)] px-3.5 py-2.5 text-left text-sm last:border-0 hover:bg-cream-50"
+                    className="flex w-full items-center justify-between gap-2 border-b border-[var(--border-subtle)] px-3.5 py-2.5 text-left text-sm last:border-0 hover:bg-[var(--bg-accent-soft)]"
                   >
                     <span>{p.name}</span>
                     <span className="flex items-center gap-2 text-[var(--text-muted)]">
@@ -139,7 +139,7 @@ export function AdminCreateOrderModal({
         </div>
 
         <div>
-          <p className="mb-2 text-sm font-medium text-brand-900">Món đã chọn</p>
+          <p className="mb-2 text-sm font-medium text-[var(--text-primary)]">Món đã chọn</p>
           {items.length === 0 ? (
             <EmptyState title="Chưa có món nào" description="Tìm và thêm món phía trên." />
           ) : (

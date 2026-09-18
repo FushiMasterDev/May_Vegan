@@ -1,5 +1,10 @@
 @import 'tailwindcss';
 
+/* Dark mode được bật thủ công qua thuộc tính data-theme (xem ThemeContext),
+   không dùng media query mặc định của Tailwind — cho phép người dùng chọn
+   giao diện độc lập với cài đặt hệ thống. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme {
   --font-display: 'Playfair Display', 'Be Vietnam Pro', serif;
   --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
@@ -35,6 +40,7 @@
 :root {
   --bg-app: var(--color-cream-50);
   --bg-surface: #ffffff;
+  --bg-accent-soft: var(--color-cream-100);
   --text-primary: var(--color-brand-900);
   --text-muted: var(--color-brand-700);
   --border-subtle: var(--color-brand-100);
@@ -43,6 +49,7 @@
 :root[data-theme='dark'] {
   --bg-app: #1b1f17;
   --bg-surface: #242a1e;
+  --bg-accent-soft: #2a3323;
   --text-primary: var(--color-cream-100);
   --text-muted: var(--color-brand-200);
   --border-subtle: #333a29;

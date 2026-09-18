@@ -40,7 +40,7 @@ export default function ResetPasswordPage() {
   if (!token) {
     return (
       <div className="text-center">
-        <h1 className="font-display text-2xl text-brand-900">Liên kết không hợp lệ</h1>
+        <h1 className="font-display text-2xl text-[var(--text-primary)]">Liên kết không hợp lệ</h1>
         <p className="mt-2 text-sm text-[var(--text-muted)]">Vui lòng yêu cầu đặt lại mật khẩu mới.</p>
         <Link to="/forgot-password" className="mt-4 inline-block text-sm font-medium text-brand-700 hover:underline">
           Quên mật khẩu
@@ -51,7 +51,7 @@ export default function ResetPasswordPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brand-900">Đặt lại mật khẩu</h1>
+      <h1 className="font-display text-2xl text-[var(--text-primary)]">Đặt lại mật khẩu</h1>
       <p className="mt-1 text-sm text-[var(--text-muted)]">Nhập mật khẩu mới cho tài khoản của bạn.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">

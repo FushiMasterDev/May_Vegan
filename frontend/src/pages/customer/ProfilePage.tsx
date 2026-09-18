@@ -31,7 +31,7 @@ export default function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
-      <h1 className="mb-8 font-display text-4xl text-brand-900">Hồ sơ của tôi</h1>
+      <h1 className="mb-8 font-display text-4xl text-[var(--text-primary)]">Hồ sơ của tôi</h1>
 
       <div className="grid gap-8 lg:grid-cols-[220px_1fr]">
         <nav className="flex gap-2 overflow-x-auto lg:flex-col">
@@ -41,7 +41,7 @@ export default function ProfilePage() {
               onClick={() => setParams({ tab: t.key })}
               className={clsx(
                 'flex shrink-0 items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-medium transition',
-                tab === t.key ? 'bg-brand-600 text-white' : 'text-[var(--text-muted)] hover:bg-brand-50'
+                tab === t.key ? 'bg-brand-600 text-white' : 'text-[var(--text-muted)] hover:bg-[var(--bg-accent-soft)]'
               )}
             >
               <t.icon size={16} /> {t.label}
@@ -112,7 +112,7 @@ function InfoTab() {
       )}
 
       <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6">
-        <h2 className="font-display text-lg text-brand-900">Thông tin cá nhân</h2>
+        <h2 className="font-display text-lg text-[var(--text-primary)]">Thông tin cá nhân</h2>
         <div className="mt-4 flex flex-col gap-4">
           <Input label="Email" value={user.email} disabled />
           <Input label="Họ tên" value={fullName} onChange={(e) => setFullName(e.target.value)} error={errors.fullName} />
@@ -144,7 +144,7 @@ function OrdersTab() {
           className="flex items-center justify-between gap-3 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4 transition hover:border-brand-300"
         >
           <div>
-            <p className="font-medium text-brand-900">{order.orderCode}</p>
+            <p className="font-medium text-[var(--text-primary)]">{order.orderCode}</p>
             <p className="text-xs text-[var(--text-muted)]">{formatDateTime(order.createdAt)} · {order.items.length} món</p>
           </div>
           <div className="flex items-center gap-3">
@@ -170,7 +170,7 @@ function ReservationsTab() {
       {reservations.map((r) => (
         <div key={r.id} className="flex items-center justify-between gap-3 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-4">
           <div>
-            <p className="font-medium text-brand-900">{r.reservationCode}</p>
+            <p className="font-medium text-[var(--text-primary)]">{r.reservationCode}</p>
             <p className="text-xs text-[var(--text-muted)]">
               {formatDate(r.reservationDate)} lúc {r.reservationTime.slice(11, 16)} · {r.partySize} người
               {r.table ? ` · Bàn ${r.table.code}` : ''}
@@ -215,7 +215,7 @@ function PasswordTab() {
 
   return (
     <div className="max-w-md rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6">
-      <h2 className="font-display text-lg text-brand-900">Đổi mật khẩu</h2>
+      <h2 className="font-display text-lg text-[var(--text-primary)]">Đổi mật khẩu</h2>
       <div className="mt-4 flex flex-col gap-4">
         <Input label="Mật khẩu hiện tại" type="password" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} error={errors.currentPassword} />
         <Input label="Mật khẩu mới" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} error={errors.newPassword} />

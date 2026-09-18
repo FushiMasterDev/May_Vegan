@@ -41,7 +41,7 @@ export default function LoginPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brand-900">Đăng nhập</h1>
+      <h1 className="font-display text-2xl text-[var(--text-primary)]">Đăng nhập</h1>
       <p className="mt-1 text-sm text-[var(--text-muted)]">Chào mừng bạn quay lại Mây Vegan.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">

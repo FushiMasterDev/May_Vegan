@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, X, LogOut, User, Home, Leaf } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Dropdown } from '@/components/ui/Dropdown';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { AdminNavLinks } from './AdminSidebar';
 
 const ROLE_LABEL: Record<string, string> = {
@@ -28,18 +29,19 @@ export function AdminTopbar() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setDrawerOpen(true)}
-            className="flex h-9 w-9 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 lg:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 dark:text-cream-100 dark:hover:bg-white/10 lg:hidden"
             aria-label="Mở menu"
           >
             <Menu size={20} />
           </button>
-          <span className="font-display text-lg text-brand-900 lg:hidden">Mây Vegan</span>
+          <span className="font-display text-lg text-[var(--text-primary)] lg:hidden">Mây Vegan</span>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="hidden text-sm text-[var(--text-muted)] sm:inline">
             {user && ROLE_LABEL[user.role]}
           </span>
+          <ThemeToggle className="flex h-9 w-9 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 dark:text-cream-100 dark:hover:bg-white/10" />
           <Dropdown
             trigger={
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-700">

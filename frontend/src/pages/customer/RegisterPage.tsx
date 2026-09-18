@@ -54,7 +54,7 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h1 className="font-display text-2xl text-brand-900">Tạo tài khoản</h1>
+      <h1 className="font-display text-2xl text-[var(--text-primary)]">Tạo tài khoản</h1>
       <p className="mt-1 text-sm text-[var(--text-muted)]">Đăng ký để đặt món nhanh hơn và tích điểm mỗi đơn hàng.</p>
 
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">

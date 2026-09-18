@@ -67,7 +67,7 @@ export default function IngredientsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl text-brand-900">Nguyên liệu</h1>
+          <h1 className="font-display text-3xl text-[var(--text-primary)]">Nguyên liệu</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Theo dõi nguyên liệu và mức tồn kho tối thiểu.</p>
         </div>
         <Button onClick={() => { setEditing(null); setFormOpen(true); }}>
@@ -105,7 +105,7 @@ export default function IngredientsPage() {
                 return (
                   <Tr key={ing.id}>
                     <Td className="text-xs text-[var(--text-muted)]">{ing.code}</Td>
-                    <Td className="font-medium text-brand-900">{ing.name}</Td>
+                    <Td className="font-medium text-[var(--text-primary)]">{ing.name}</Td>
                     <Td>
                       <span className={low ? 'font-semibold text-red-600' : ''}>
                         {ing.quantityInStock} {ing.unit}

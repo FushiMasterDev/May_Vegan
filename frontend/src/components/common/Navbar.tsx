@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useCart } from '@/contexts/CartContext';
 import { Dropdown } from '@/components/ui/Dropdown';
 import { Button } from '@/components/ui/Button';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const NAV_LINKS = [
   { to: '/', label: 'Trang chủ', end: true },
@@ -30,7 +31,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-[var(--border-subtle)] bg-[var(--bg-app)]/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-display text-2xl font-semibold text-brand-800">Mây Vegan</span>
+          <span className="font-display text-2xl font-semibold text-brand-800 dark:text-cream-100">Mây Vegan</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
@@ -51,9 +52,10 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle className="flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 dark:text-cream-100 dark:hover:bg-white/10" />
           <Link
             to="/cart"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 dark:text-cream-100 dark:hover:bg-white/10"
             aria-label="Giỏ hàng"
           >
             <ShoppingBag size={20} />
@@ -102,7 +104,7 @@ export function Navbar() {
 
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-brand-800 hover:bg-brand-50 dark:text-cream-100 dark:hover:bg-white/10 md:hidden"
             aria-label="Menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}

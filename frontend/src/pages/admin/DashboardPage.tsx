@@ -42,7 +42,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-3xl text-brand-900">Tổng quan</h1>
+        <h1 className="font-display text-3xl text-[var(--text-primary)]">Tổng quan</h1>
         <p className="mt-1 text-sm text-[var(--text-muted)]">Số liệu hoạt động của Mây Vegan hôm nay.</p>
       </div>
 
@@ -59,12 +59,12 @@ export default function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="p-5 lg:col-span-2">
-          <h2 className="font-display text-lg text-brand-900">Doanh thu 14 ngày qua</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Doanh thu 14 ngày qua</h2>
           {trendLoading ? <PageLoading /> : <RevenueAreaChart data={revenueTrend ?? []} />}
         </Card>
 
         <Card className="p-5">
-          <h2 className="font-display text-lg text-brand-900">Món bán chạy</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Món bán chạy</h2>
           <div className="mt-4">
             <RankedBarList
               items={stats.topProducts.map((p) => ({
@@ -79,12 +79,12 @@ export default function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="p-5 lg:col-span-2">
-          <h2 className="font-display text-lg text-brand-900">Đơn hàng theo trạng thái</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Đơn hàng theo trạng thái</h2>
           {statusLoading ? <PageLoading /> : <SimpleBarChart data={statusData} />}
         </Card>
 
         <Card className="p-5">
-          <h2 className="font-display text-lg text-brand-900">Top món ăn</h2>
+          <h2 className="font-display text-lg text-[var(--text-primary)]">Top món ăn</h2>
           <ul className="mt-4 flex flex-col gap-3">
             {stats.topProducts.slice(0, 5).map((p) => (
               <li key={p.id} className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export default function DashboardPage() {
                   <ProductImage src={getPrimaryImage(p)} alt={p.name} className="h-full w-full object-cover" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-brand-900 line-clamp-1">{p.name}</p>
+                  <p className="text-sm font-medium text-[var(--text-primary)] line-clamp-1">{p.name}</p>
                   <p className="text-xs text-[var(--text-muted)]">{formatCurrency(p.salePrice ?? p.price)}</p>
                 </div>
                 <span className="text-xs font-medium text-[var(--text-muted)]">{toNumber(p.soldCount)} bán</span>
