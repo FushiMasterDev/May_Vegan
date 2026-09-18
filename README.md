@@ -2,8 +2,7 @@
 
 Hệ thống quản lý & đặt món quán ăn chay Mây Vegan.
 
-> README này sẽ được hoàn thiện đầy đủ ở Phase 8. Hiện tại (Phase 2) đã có
-> kiến trúc + database, chưa có business logic API hay UI đầy đủ.
+> README này sẽ được hoàn thiện đầy đủ ở Phase 8.
 
 ## Cấu trúc
 
@@ -59,7 +58,7 @@ npm run dev               # http://localhost:5173, proxy /api -> backend :4000
 - [x] Phase 2 — Database (schema.sql, seed.sql, Prisma schema đồng bộ, đã test trên MySQL thật)
 - [x] Phase 3 — Backend (auth, products, orders, tables, reservations, customers, employees, inventory, coupons, reviews, dashboard, reports — xem `docs/api.md`)
 - [x] Phase 4 — Frontend (landing, menu, giỏ hàng, thanh toán, đặt bàn, auth, hồ sơ, admin đầy đủ)
-- [ ] Phase 5 — Integration
+- [x] Phase 5 — Integration (đối chiếu toàn bộ endpoint FE↔BE, kiểm tra shape response khớp type, test luồng end-to-end thật qua CORS/proxy)
 - [ ] Phase 6 — Testing
 - [ ] Phase 7 — UI polish
 - [ ] Phase 8 — Final (README đầy đủ, tài khoản demo)
