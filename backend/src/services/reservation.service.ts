@@ -45,17 +45,30 @@ export async function checkAvailability(input: {
   partySize: number;
   area?: string;
 }) {
-  const table = await findAvailableTable(
-    parseDateOnly(input.reservationDate),
-    input.reservationTime,
-    input.partySize,
-    input.area
-  );
+  const date = parseDateOnly(input.reservationDate);
+  if (isPastDateTime(date, input.reservationTime)) {
+    return { available: false, suggestedTable: null };
+  }
+  const table = await findAvailableTable(date, input.reservationTime, input.partySize, input.area);
   return { available: Boolean(table), suggestedTable: table };
+}
+
+function isPastDateTime(date: Date, time: string): boolean {
+  const now = new Date();
+  const todayUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  if (date < todayUTC) return true;
+  if (date.getTime() === todayUTC.getTime()) {
+    const nowMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+    return timeToMinutes(time) < nowMinutes;
+  }
+  return false;
 }
 
 export async function createReservation(customerId: number | null, input: CreateReservationInput) {
   const date = parseDateOnly(input.reservationDate);
+  if (isPastDateTime(date, input.reservationTime)) {
+    throw AppError.badRequest('Không thể đặt bàn cho thời điểm trong quá khứ');
+  }
   const table = await findAvailableTable(date, input.reservationTime, input.partySize, input.area);
   if (!table) {
     throw AppError.conflict('Không còn bàn trống phù hợp cho khung giờ này. Vui lòng chọn thời gian hoặc khu vực khác.');
