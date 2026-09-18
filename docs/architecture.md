@@ -80,8 +80,28 @@ việc ẩn UI ở frontend.
   responsive/mobile-first, dark mode qua CSS variables. Build + typecheck
   sạch cho cả frontend/backend; admin pages được code-split (lazy load) khỏi
   bundle chính để trang khách hàng tải nhanh hơn.
+- Phase 5 (Integration): đối chiếu toàn bộ endpoint frontend↔backend, so
+  sánh shape response thật với type TypeScript, test end-to-end qua đúng
+  đường dẫn Vite proxy mà trình duyệt dùng — không phát hiện lỗi tích hợp.
+- Phase 6 (Testing): ma trận RBAC đầy đủ 5 role, CRUD còn lại (suppliers,
+  bàn, coupon, nguyên liệu, nhân viên, đánh giá) kèm các rule chặn xoá khi
+  có dữ liệu liên quan, cạnh tính tiền (cap giảm giá, hoàn coupon khi huỷ
+  đơn), validation. Phát hiện và sửa 1 bug thật: hệ thống từng cho phép đặt
+  bàn cho ngày/giờ trong quá khứ.
+- Phase 7 (UI polish): hoàn thiện dark mode (trước đó chỉ có CSS chết,
+  không có cách bật) — phát hiện và sửa ~90 chỗ chữ sẽ vô hình khi bật dark
+  mode (dùng token `--text-primary`/`--bg-accent-soft` thích ứng theme thay
+  vì màu cố định); thêm Error Boundary toàn cục (trước đó thiếu hoàn toàn —
+  một lỗi render bất kỳ sẽ làm trắng màn hình); favicon thương hiệu.
+- Phase 8 (Final): mô phỏng lại toàn bộ quy trình cài đặt từ README trên
+  một database hoàn toàn trống (drop → schema → seed → generate) và xác
+  nhận cả 5 tài khoản demo đăng nhập thành công — README phản ánh đúng các
+  bước thực tế, không phải suy đoán.
 - Một vài giới hạn phạm vi có chủ đích: chưa có ảnh món ăn thật (dùng
   placeholder có thiết kế, admin có thể upload qua chức năng đã hoàn thiện);
   không có "tuỳ chọn topping" riêng (dùng trường ghi chú món); không có cổng
   thanh toán online thật (chỉ Tiền mặt/Chuyển khoản ở checkout khách hàng,
-  tránh giả lập luồng thanh toán không có thật).
+  tránh giả lập luồng thanh toán không có thật); chưa gửi email thật (link
+  đặt lại mật khẩu log ra console ở dev); không có công cụ trình duyệt trong
+  suốt quá trình phát triển nên phần UI/responsive được xác minh qua rà soát
+  code có hệ thống thay vì quan sát trực quan.
