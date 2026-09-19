@@ -2,7 +2,7 @@
   "name": "mayvegan-backend",
   "version": "1.0.0",
   "private": true,
-  "description": "Mây Vegan - Backend API (Node.js + Express + TypeScript + MySQL)",
+  "description": "Mây Vegan - Backend API (Node.js + Express + TypeScript + PostgreSQL)",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",

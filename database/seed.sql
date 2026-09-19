@@ -1,5 +1,5 @@
 -- ============================================================================
--- Mây Vegan — Seed Data
+-- Mây Vegan — Seed Data (PostgreSQL)
 -- Dữ liệu mẫu thực tế cho quán ăn chay Mây Vegan (không dùng lorem ipsum).
 -- Idempotent: TRUNCATE toàn bộ bảng nghiệp vụ trước khi insert lại, để có thể
 -- chạy lại script này nhiều lần trên môi trường dev mà không lỗi trùng khoá.
@@ -10,33 +10,19 @@
 --
 -- Tài khoản demo (mật khẩu xem database/seed-accounts.md — không commit mật
 -- khẩu thật vào mã nguồn production).
+--
+-- Lưu ý PostgreSQL: INSERT với id tường minh KHÔNG tự đẩy sequence của cột
+-- SERIAL — nếu bỏ qua bước setval() ở cuối file, lần insert tiếp theo không
+-- chỉ định id (ví dụ tạo đơn hàng mới qua ứng dụng) sẽ có thể đụng khoá trùng
+-- với các id đã seed ở đây.
 -- ============================================================================
 
-USE mayvegan;
-
-SET FOREIGN_KEY_CHECKS = 0;
-
-TRUNCATE TABLE notifications;
-TRUNCATE TABLE reviews;
-TRUNCATE TABLE coupon_usages;
-TRUNCATE TABLE payments;
-TRUNCATE TABLE order_items;
-TRUNCATE TABLE orders;
-TRUNCATE TABLE coupons;
-TRUNCATE TABLE reservations;
-TRUNCATE TABLE tables;
-TRUNCATE TABLE inventory_transactions;
-TRUNCATE TABLE ingredients;
-TRUNCATE TABLE product_images;
-TRUNCATE TABLE products;
-TRUNCATE TABLE categories;
-TRUNCATE TABLE suppliers;
-TRUNCATE TABLE employees;
-TRUNCATE TABLE customers;
-TRUNCATE TABLE users;
-TRUNCATE TABLE roles;
-
-SET FOREIGN_KEY_CHECKS = 1;
+TRUNCATE TABLE
+  notifications, reviews, coupon_usages, payments, order_items, orders,
+  coupons, reservations, tables, inventory_transactions, ingredients,
+  product_images, products, categories, suppliers, employees, customers,
+  users, roles
+RESTART IDENTITY CASCADE;
 
 -- ----------------------------------------------------------------------------
 -- roles
@@ -97,15 +83,15 @@ INSERT INTO suppliers (id, name, contact_person, phone, email, address) VALUES
 -- categories
 -- ----------------------------------------------------------------------------
 INSERT INTO categories (id, name, slug, description, display_order, is_active) VALUES
-  (1, 'Món khai vị', 'khai-vi',      'Các món khai vị thanh nhẹ, kích thích vị giác trước bữa chính', 1, 1),
-  (2, 'Món chính',   'mon-chinh',    'Các món mặn chay đậm đà, dùng kèm cơm hoặc bún',                 2, 1),
-  (3, 'Cơm',         'com',          'Các món cơm chay no bụng, đủ chất',                              3, 1),
-  (4, 'Mì',          'mi',           'Phở, bún, mì chay nước dùng thanh ngọt tự nhiên',                4, 1),
-  (5, 'Lẩu',         'lau',          'Lẩu chay dùng cho nhóm 2-4 người',                               5, 1),
-  (6, 'Canh',        'canh',         'Các món canh chay thanh mát',                                    6, 1),
-  (7, 'Đồ uống',     'do-uong',      'Trà, nước ép, sinh tố tươi mỗi ngày',                            7, 1),
-  (8, 'Tráng miệng', 'trang-mieng',  'Chè và món tráng miệng chay nhẹ nhàng',                          8, 1),
-  (9, 'Combo',       'combo',        'Combo tiết kiệm cho 1 người hoặc cả gia đình',                   9, 1);
+  (1, 'Món khai vị', 'khai-vi',      'Các món khai vị thanh nhẹ, kích thích vị giác trước bữa chính', 1, TRUE),
+  (2, 'Món chính',   'mon-chinh',    'Các món mặn chay đậm đà, dùng kèm cơm hoặc bún',                 2, TRUE),
+  (3, 'Cơm',         'com',          'Các món cơm chay no bụng, đủ chất',                              3, TRUE),
+  (4, 'Mì',          'mi',           'Phở, bún, mì chay nước dùng thanh ngọt tự nhiên',                4, TRUE),
+  (5, 'Lẩu',         'lau',          'Lẩu chay dùng cho nhóm 2-4 người',                               5, TRUE),
+  (6, 'Canh',        'canh',         'Các món canh chay thanh mát',                                    6, TRUE),
+  (7, 'Đồ uống',     'do-uong',      'Trà, nước ép, sinh tố tươi mỗi ngày',                            7, TRUE),
+  (8, 'Tráng miệng', 'trang-mieng',  'Chè và món tráng miệng chay nhẹ nhàng',                          8, TRUE),
+  (9, 'Combo',       'combo',        'Combo tiết kiệm cho 1 người hoặc cả gia đình',                   9, TRUE);
 
 -- ----------------------------------------------------------------------------
 -- products
@@ -115,113 +101,113 @@ INSERT INTO products
   (1, 1, 'Gỏi cuốn chay', 'goi-cuon-chay',
     'Gỏi cuốn tươi mát cuốn tay với bún, rau sống và đậu hũ, chấm cùng nước tương pha me chua ngọt.',
     'Bún tươi, rau sống, đậu hũ chiên, bánh tráng, nước tương me', 180, 'Có chứa đậu nành',
-    45000, NULL, 'AVAILABLE', 0, 0, 4.0, 1, 20, '2024-04-01 08:00:00'),
+    45000, NULL, 'AVAILABLE', FALSE, FALSE, 4.0, 1, 20, '2024-04-01 08:00:00'),
   (2, 1, 'Chả giò chay', 'cha-gio-chay',
     'Chả giò chiên giòn nhân nấm và rau củ băm nhuyễn, ăn kèm rau sống và nước chấm chua ngọt.',
     'Bánh tráng cuốn, nấm mèo, cà rốt, miến, khoai môn', 220, 'Có chứa gluten',
-    49000, NULL, 'AVAILABLE', 0, 0, 0, 0, 16, '2024-04-01 08:00:00'),
+    49000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 16, '2024-04-01 08:00:00'),
   (3, 1, 'Nem nướng chay', 'nem-nuong-chay',
     'Nem nướng chay thơm mùi sả, ăn kèm bánh tráng, rau sống và nước chấm đậu phộng.',
     'Đậu hũ, sả, rau thơm, bánh tráng, tương đậu phộng', 200, 'Có chứa đậu phộng',
-    52000, NULL, 'AVAILABLE', 0, 0, 0, 0, 12, '2024-04-01 08:00:00'),
+    52000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 12, '2024-04-01 08:00:00'),
   (4, 2, 'Đậu hũ sốt nấm', 'dau-hu-sot-nam',
     'Đậu hũ non chiên sém vàng, rưới sốt nấm đông cô đậm đà, ăn kèm cơm trắng nóng hổi.',
     'Đậu hũ non, nấm đông cô, hành boa rô, nước tương', 260, 'Có chứa đậu nành',
-    65000, 55000, 'AVAILABLE', 1, 1, 5.0, 1, 45, '2024-04-05 08:00:00'),
+    65000, 55000, 'AVAILABLE', TRUE, TRUE, 5.0, 1, 45, '2024-04-05 08:00:00'),
   (5, 2, 'Nấm kho tiêu', 'nam-kho-tieu',
     'Nấm bào ngư kho tiêu kiểu Nam Bộ, vị mặn ngọt hài hoà, cay nhẹ từ tiêu xanh.',
     'Nấm bào ngư, tiêu xanh, nước dừa, nước tương', 190, NULL,
-    68000, NULL, 'AVAILABLE', 0, 0, 0, 0, 22, '2024-04-05 08:00:00'),
+    68000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 22, '2024-04-05 08:00:00'),
   (6, 2, 'Đậu hũ chiên sả ớt', 'dau-hu-chien-sa-ot',
     'Đậu hũ chiên giòn áo lớp sả ớt thơm nồng, món ăn được yêu thích nhất trong nhóm món chính cay.',
     'Đậu hũ, sả, ớt, tỏi', 240, 'Có chứa đậu nành, cay',
-    62000, NULL, 'AVAILABLE', 0, 0, 0, 0, 19, '2024-04-05 08:00:00'),
+    62000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 19, '2024-04-05 08:00:00'),
   (7, 2, 'Rau củ xào thập cẩm', 'rau-cu-xao-thap-cam',
     'Bông cải, cà rốt, nấm và đậu que xào giòn với dầu mè, giữ trọn vị ngọt tự nhiên của rau củ.',
     'Bông cải xanh, cà rốt, nấm, đậu que, dầu mè', 150, NULL,
-    58000, NULL, 'AVAILABLE', 0, 0, 0, 0, 14, '2024-04-05 08:00:00'),
+    58000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 14, '2024-04-05 08:00:00'),
   (8, 3, 'Cơm tấm chay', 'com-tam-chay',
     'Cơm tấm chay kiểu Sài Gòn với đậu hũ chiên sả, chả chay và trứng chay, dùng kèm nước mắm chay.',
     'Cơm tấm, đậu hũ, chả chay, trứng chay, dưa leo', 520, 'Có chứa đậu nành',
-    59000, NULL, 'AVAILABLE', 0, 1, 0, 0, 38, '2024-04-10 08:00:00'),
+    59000, NULL, 'AVAILABLE', FALSE, TRUE, 0, 0, 38, '2024-04-10 08:00:00'),
   (9, 3, 'Cơm chiên rau củ', 'com-chien-rau-cu',
     'Cơm chiên với cà rốt, bắp non, đậu Hà Lan và trứng chay, hạt cơm tơi thơm mùi dầu mè.',
     'Cơm trắng, cà rốt, bắp non, đậu Hà Lan, trứng chay', 480, NULL,
-    55000, NULL, 'AVAILABLE', 0, 0, 0, 0, 21, '2024-04-10 08:00:00'),
+    55000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 21, '2024-04-10 08:00:00'),
   (10, 3, 'Cơm cuộn rong biển chay', 'com-cuon-rong-bien-chay',
     'Cơm cuộn kiểu Hàn với rong biển, cà rốt, dưa leo và đậu hũ áp chảo, cắt miếng vừa ăn.',
     'Cơm, rong biển, cà rốt, dưa leo, đậu hũ áp chảo', 400, NULL,
-    65000, NULL, 'AVAILABLE', 0, 0, 0, 0, 9, '2024-04-10 08:00:00'),
+    65000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 9, '2024-04-10 08:00:00'),
   (11, 4, 'Phở chay', 'pho-chay',
     'Nước dùng phở ninh từ rau củ và nấm trong nhiều giờ, thanh ngọt tự nhiên, ăn kèm đậu hũ và rau thơm.',
     'Bánh phở, nấm đông cô, đậu hũ, rau thơm, giá', 350, NULL,
-    55000, NULL, 'AVAILABLE', 1, 1, 5.0, 1, 40, '2024-04-02 08:00:00'),
+    55000, NULL, 'AVAILABLE', TRUE, TRUE, 5.0, 1, 40, '2024-04-02 08:00:00'),
   (12, 4, 'Bún Huế chay', 'bun-hue-chay',
     'Bún bò Huế phiên bản chay cay nồng đặc trưng, nước dùng sả ớt đậm đà, ăn kèm chả chay.',
     'Bún, sả, ớt, chả chay, rau sống', 380, 'Cay',
-    58000, NULL, 'AVAILABLE', 0, 0, 0, 0, 17, '2024-04-02 08:00:00'),
+    58000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 17, '2024-04-02 08:00:00'),
   (13, 4, 'Mì xào rau củ chay', 'mi-xao-rau-cu-chay',
     'Mì trứng chay xào giòn cạnh, phủ rau củ và nấm xào sốt nâu sánh nhẹ.',
     'Mì trứng chay, nấm, cải thìa, cà rốt', 420, 'Có chứa gluten',
-    52000, NULL, 'AVAILABLE', 0, 0, 0, 0, 11, '2024-04-02 08:00:00'),
+    52000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 11, '2024-04-02 08:00:00'),
   (14, 5, 'Lẩu nấm', 'lau-nam',
     'Lẩu nước dùng ngọt thanh từ nấm và rau củ, thập cẩm nhiều loại nấm tươi, dùng cho 2-3 người.',
     'Nấm đông cô, nấm bào ngư, cải thảo, đậu hũ, bún', 600, NULL,
-    189000, NULL, 'AVAILABLE', 1, 0, 5.0, 1, 25, '2024-04-08 08:00:00'),
+    189000, NULL, 'AVAILABLE', TRUE, FALSE, 5.0, 1, 25, '2024-04-08 08:00:00'),
   (15, 5, 'Lẩu Thái chay', 'lau-thai-chay',
     'Lẩu Thái chua cay chay, vị sả chanh đặc trưng, ăn kèm nấm, đậu hũ và rau nhúng thập cẩm.',
     'Sả, lá chanh, nấm, đậu hũ, cà chua', 580, 'Cay',
-    199000, NULL, 'AVAILABLE', 0, 0, 0, 0, 8, '2024-04-08 08:00:00'),
+    199000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 8, '2024-04-08 08:00:00'),
   (16, 6, 'Canh chua chay', 'canh-chua-chay',
     'Canh chua vị me thanh nhẹ với đậu bắp, thơm, cà chua và đậu hũ, không quá chua.',
     'Me, thơm, cà chua, đậu bắp, đậu hũ', 120, NULL,
-    45000, NULL, 'AVAILABLE', 0, 0, 4.0, 1, 18, '2024-04-06 08:00:00'),
+    45000, NULL, 'AVAILABLE', FALSE, FALSE, 4.0, 1, 18, '2024-04-06 08:00:00'),
   (17, 6, 'Canh rong biển đậu hũ', 'canh-rong-bien-dau-hu',
     'Canh thanh đạm với rong biển và đậu hũ non, thích hợp dùng cùng các món chiên xào đậm vị.',
     'Rong biển, đậu hũ non, hành lá', 90, 'Có chứa đậu nành',
-    42000, NULL, 'AVAILABLE', 0, 0, 0, 0, 13, '2024-04-06 08:00:00'),
+    42000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 13, '2024-04-06 08:00:00'),
   (18, 7, 'Trà sen', 'tra-sen',
     'Trà ướp hương sen tự nhiên, vị thanh nhẹ, thích hợp dùng nóng hoặc đá.',
     'Trà xanh, hoa sen', 20, NULL,
-    29000, NULL, 'AVAILABLE', 0, 0, 4.0, 1, 52, '2024-04-01 08:00:00'),
+    29000, NULL, 'AVAILABLE', FALSE, FALSE, 4.0, 1, 52, '2024-04-01 08:00:00'),
   (19, 7, 'Nước ép cam cà rốt', 'nuoc-ep-cam-ca-rot',
     'Nước ép tươi từ cam và cà rốt, giàu vitamin, không thêm đường.',
     'Cam, cà rốt', 90, NULL,
-    35000, NULL, 'AVAILABLE', 0, 0, 0, 0, 15, '2024-04-01 08:00:00'),
+    35000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 15, '2024-04-01 08:00:00'),
   (20, 7, 'Sinh tố bơ', 'sinh-to-bo',
     'Sinh tố bơ sáp béo mịn, xay cùng sữa hạt, không dùng sữa động vật.',
     'Bơ sáp, sữa hạt, đá', 210, NULL,
-    39000, NULL, 'AVAILABLE', 0, 0, 0, 0, 24, '2024-04-01 08:00:00'),
+    39000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 24, '2024-04-01 08:00:00'),
   (21, 7, 'Nước ép dứa', 'nuoc-ep-dua',
     'Nước ép dứa tươi mát, vị chua ngọt tự nhiên, giải nhiệt ngày nắng.',
     'Dứa tươi', 80, NULL,
-    32000, NULL, 'AVAILABLE', 0, 0, 0, 0, 10, '2024-04-01 08:00:00'),
+    32000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 10, '2024-04-01 08:00:00'),
   (22, 8, 'Chè đậu xanh', 'che-dau-xanh',
     'Chè đậu xanh nấu nhuyễn mịn, nước cốt dừa béo nhẹ, vị ngọt thanh vừa phải.',
     'Đậu xanh, nước cốt dừa, đường thốt nốt', 250, NULL,
-    25000, NULL, 'AVAILABLE', 0, 0, 0, 0, 27, '2024-04-01 08:00:00'),
+    25000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 27, '2024-04-01 08:00:00'),
   (23, 8, 'Chè hạt sen long nhãn', 'che-hat-sen-long-nhan',
     'Chè hạt sen long nhãn thanh mát, tốt cho giấc ngủ, độ ngọt nhẹ nhàng.',
     'Hạt sen, long nhãn, đường phèn', 230, NULL,
-    29000, NULL, 'AVAILABLE', 0, 0, 0, 0, 16, '2024-04-01 08:00:00'),
+    29000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 16, '2024-04-01 08:00:00'),
   (24, 8, 'Rau câu dừa', 'rau-cau-dua',
     'Rau câu dừa mềm mịn, béo nhẹ vị nước cốt dừa, thích hợp tráng miệng sau bữa ăn.',
     'Bột rau câu, nước cốt dừa, đường', 160, 'Có chứa dừa',
-    22000, NULL, 'AVAILABLE', 0, 0, 0, 0, 20, '2024-04-01 08:00:00'),
+    22000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 20, '2024-04-01 08:00:00'),
   (25, 9, 'Combo Mây', 'combo-may',
     'Combo Mây gồm Cơm tấm chay, Canh chua chay và Trà sen — lựa chọn trọn vị, tiết kiệm cho 1 người.',
     'Cơm tấm chay, Canh chua chay, Trà sen', 700, NULL,
-    149000, 129000, 'AVAILABLE', 1, 1, 0, 0, 30, '2024-04-12 08:00:00'),
+    149000, 129000, 'AVAILABLE', TRUE, TRUE, 0, 0, 30, '2024-04-12 08:00:00'),
   (26, 9, 'Combo Gia đình Mây Vegan', 'combo-gia-dinh-may-vegan',
     'Combo cho 3-4 người gồm Lẩu nấm, Cơm chiên rau củ, Gỏi cuốn chay và Trà sen — đủ đầy cho cả gia đình.',
     'Lẩu nấm, Cơm chiên rau củ, Gỏi cuốn chay, Trà sen', 1500, NULL,
-    349000, NULL, 'AVAILABLE', 0, 0, 0, 0, 6, '2024-04-12 08:00:00');
+    349000, NULL, 'AVAILABLE', FALSE, FALSE, 0, 0, 6, '2024-04-12 08:00:00');
 
 -- ----------------------------------------------------------------------------
 -- product_images (1 ảnh chính / món — placeholder path, thay bằng ảnh thật khi upload)
 -- ----------------------------------------------------------------------------
 INSERT INTO product_images (product_id, image_url, is_primary, display_order)
-SELECT id, CONCAT('/uploads/products/', slug, '-1.jpg'), 1, 1 FROM products;
+SELECT id, CONCAT('/uploads/products/', slug, '-1.jpg'), TRUE, 1 FROM products;
 
 -- ----------------------------------------------------------------------------
 -- ingredients
@@ -379,7 +365,23 @@ INSERT INTO reviews (product_id, customer_id, order_id, rating, comment, status,
 -- notifications
 -- ----------------------------------------------------------------------------
 INSERT INTO notifications (user_id, title, message, type, is_read, created_at) VALUES
-  (5, 'Đơn hàng MV20260915001 đã hoàn thành',  'Cảm ơn bạn đã dùng bữa cùng Mây Vegan. Đừng quên để lại đánh giá nhé!', 'ORDER_STATUS', 1, '2026-09-15 13:00:00'),
-  (5, 'Đặt bàn RS20260917001 đã được xác nhận', 'Bàn B04 (Tầng 1) đã sẵn sàng cho bạn lúc 18:30 ngày 17/09/2026.',       'RESERVATION',  0, '2026-09-14 09:20:00'),
-  (9, 'Đơn hàng MV20260916003 đang được giao',  'Shipper đang trên đường giao đơn hàng của bạn.',                        'ORDER_STATUS', 0, '2026-09-16 19:40:00'),
-  (1, 'Nguyên liệu Đậu hũ sắp hết hàng',        'Tồn kho hiện chỉ còn 8.5 kg, dưới mức tối thiểu 10 kg. Vui lòng nhập thêm.', 'SYSTEM',   0, '2026-09-16 10:05:00');
+  (5, 'Đơn hàng MV20260915001 đã hoàn thành',  'Cảm ơn bạn đã dùng bữa cùng Mây Vegan. Đừng quên để lại đánh giá nhé!', 'ORDER_STATUS', TRUE,  '2026-09-15 13:00:00'),
+  (5, 'Đặt bàn RS20260917001 đã được xác nhận', 'Bàn B04 (Tầng 1) đã sẵn sàng cho bạn lúc 18:30 ngày 17/09/2026.',       'RESERVATION',  FALSE, '2026-09-14 09:20:00'),
+  (9, 'Đơn hàng MV20260916003 đang được giao',  'Shipper đang trên đường giao đơn hàng của bạn.',                        'ORDER_STATUS', FALSE, '2026-09-16 19:40:00'),
+  (1, 'Nguyên liệu Đậu hũ sắp hết hàng',        'Tồn kho hiện chỉ còn 8.5 kg, dưới mức tối thiểu 10 kg. Vui lòng nhập thêm.', 'SYSTEM',   FALSE, '2026-09-16 10:05:00');
+
+-- ----------------------------------------------------------------------------
+-- Đẩy lại sequence của mọi bảng đã insert id tường minh, để lần INSERT tiếp
+-- theo (không chỉ định id, ví dụ do ứng dụng tạo) không bị đụng khoá trùng.
+-- ----------------------------------------------------------------------------
+SELECT setval(pg_get_serial_sequence('roles', 'id'),      COALESCE((SELECT MAX(id) FROM roles), 1));
+SELECT setval(pg_get_serial_sequence('users', 'id'),      COALESCE((SELECT MAX(id) FROM users), 1));
+SELECT setval(pg_get_serial_sequence('customers', 'id'),  COALESCE((SELECT MAX(id) FROM customers), 1));
+SELECT setval(pg_get_serial_sequence('employees', 'id'),  COALESCE((SELECT MAX(id) FROM employees), 1));
+SELECT setval(pg_get_serial_sequence('suppliers', 'id'),  COALESCE((SELECT MAX(id) FROM suppliers), 1));
+SELECT setval(pg_get_serial_sequence('categories', 'id'), COALESCE((SELECT MAX(id) FROM categories), 1));
+SELECT setval(pg_get_serial_sequence('products', 'id'),   COALESCE((SELECT MAX(id) FROM products), 1));
+SELECT setval(pg_get_serial_sequence('ingredients', 'id'),COALESCE((SELECT MAX(id) FROM ingredients), 1));
+SELECT setval(pg_get_serial_sequence('tables', 'id'),     COALESCE((SELECT MAX(id) FROM tables), 1));
+SELECT setval(pg_get_serial_sequence('coupons', 'id'),    COALESCE((SELECT MAX(id) FROM coupons), 1));
+SELECT setval(pg_get_serial_sequence('orders', 'id'),     COALESCE((SELECT MAX(id) FROM orders), 1));

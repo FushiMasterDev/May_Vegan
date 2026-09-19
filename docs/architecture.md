@@ -7,7 +7,7 @@ Hệ thống gồm 3 phần độc lập, giao tiếp qua REST API:
 ```
 frontend/   React + TS + Vite + Tailwind CSS      (SPA — khách hàng + admin, route-gated theo role)
 backend/    Node.js + Express + TypeScript         (REST API, JWT auth, RBAC)
-database/   MySQL (schema.sql / seed.sql tham chiếu, Prisma là nguồn sự thật cho migration)
+database/   PostgreSQL (schema.sql / seed.sql tham chiếu, Prisma là nguồn sự thật cho migration)
 ```
 
 Một backend API dùng chung cho cả site khách hàng lẫn admin dashboard. Phân quyền theo role
@@ -16,7 +16,7 @@ việc ẩn UI ở frontend.
 
 ## 2. Backend
 
-- **Layering**: `routes -> controllers -> services -> (Prisma) models -> MySQL`.
+- **Layering**: `routes -> controllers -> services -> (Prisma) models -> PostgreSQL`.
 - **Validation**: zod schema trong `validators/`, dùng chung type giữa request body và service input.
 - **Auth**: JWT access token (15 phút) + refresh token (7 ngày), mật khẩu hash bằng bcrypt.
   Access token gửi qua header `Authorization: Bearer <token>`.
@@ -37,11 +37,19 @@ việc ẩn UI ở frontend.
 
 ## 4. Database
 
-- MySQL, thiết kế chuẩn hoá (3NF), FK ràng buộc, UNIQUE cho email/phone/order_code/coupon code,
-  INDEX cho cột tìm kiếm/lọc thường xuyên (status, category_id, created_at...).
+- PostgreSQL (ví dụ Neon free tier), thiết kế chuẩn hoá (3NF), FK ràng buộc, UNIQUE cho
+  email/phone/order_code/coupon code, INDEX cho cột tìm kiếm/lọc thường xuyên (status,
+  category_id, created_at...).
 - Prisma schema (`backend/prisma/schema.prisma`) là nguồn migration chính thức.
-  `database/schema.sql` + `database/seed.sql` là bản DDL/seed thuần để có thể khởi tạo DB độc lập
-  với Node/Prisma nếu cần (ví dụ import trực tiếp vào MySQL Workbench).
+  `database/schema.sql` + `database/seed.sql` là bản DDL/seed thuần, được chạy trực tiếp qua
+  `prisma db execute` (script `db:schema`/`db:seed`) — có thể dùng độc lập với Node/Prisma nếu cần
+  (ví dụ chạy qua `psql`).
+- Enum dùng native Postgres `CREATE TYPE ... AS ENUM`, map sang Prisma qua `@@map`. `updated_at`
+  tự refresh qua Prisma `@updatedAt` (mọi write đều qua Prisma Client) và có thêm trigger DB-level
+  `set_updated_at()` trong `schema.sql` làm lớp dự phòng cho trường hợp thao tác SQL trực tiếp.
+- **Ban đầu thiết kế trên MySQL 8, migrate sang PostgreSQL (2026)** để deploy backend lên Render
+  Free (không có gói MySQL miễn phí) + Neon Postgres free — xem lịch sử commit migrate để biết chi
+  tiết các khác biệt cú pháp đã xử lý.
 - Chi tiết bảng và ERD: xem báo cáo Phase 0 trong lịch sử trao đổi / sẽ được chốt lại khi hoàn
   thành Phase 2.
 

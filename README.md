@@ -12,7 +12,7 @@ thực đơn, kho, khách hàng, nhân viên, khuyến mãi, đánh giá, doanh 
 |---|---|
 | Frontend | React 19, TypeScript, Vite, Tailwind CSS v4, React Router, Axios, TanStack Query, Recharts, Lucide Icons |
 | Backend | Node.js, Express, TypeScript, Prisma ORM |
-| Database | MySQL 8 |
+| Database | PostgreSQL 15+ (ví dụ Neon free tier) |
 | Auth | JWT (access + refresh token), bcrypt |
 
 ## Cấu trúc thư mục
@@ -28,20 +28,14 @@ docs/       architecture.md (kiến trúc chi tiết), api.md (danh sách API đ
 ## Yêu cầu hệ thống
 
 - Node.js 20+ và npm
-- MySQL 8+ đang chạy (local hoặc container)
+- Một database PostgreSQL 15+ (local, container, hoặc free tier như Neon/Supabase)
 
 ## Cài đặt
 
 ### 1. Database
 
-Tạo database và một user riêng cho project (khuyến nghị dùng user riêng thay vì `root`):
-
-```sql
-CREATE DATABASE mayvegan CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'mayvegan_app'@'localhost' IDENTIFIED BY '<mật khẩu bạn chọn>';
-GRANT ALL PRIVILEGES ON mayvegan.* TO 'mayvegan_app'@'localhost';
-FLUSH PRIVILEGES;
-```
+Tạo một project/database Postgres trống (ví dụ tạo project free tại [neon.tech](https://neon.tech) và
+lấy connection string từ dashboard, hoặc `createdb mayvegan` nếu chạy Postgres local).
 
 ### 2. Backend
 
@@ -52,7 +46,7 @@ cp .env.example .env
 
 Mở `backend/.env` và chỉnh các giá trị:
 
-- `DATABASE_URL` → `mysql://mayvegan_app:<mật khẩu>@localhost:3306/mayvegan`
+- `DATABASE_URL` → connection string Postgres, ví dụ `postgresql://user:<mật khẩu>@host.neon.tech/dbname?sslmode=require`
 - `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` → chuỗi ngẫu nhiên, ví dụ tạo bằng `openssl rand -hex 32`
 
 ```bash

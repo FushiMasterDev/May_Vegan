@@ -4,7 +4,7 @@ import { prisma } from './config/database';
 
 async function main() {
   await prisma.$connect();
-  console.log('Đã kết nối MySQL thành công.');
+  console.log('Đã kết nối PostgreSQL thành công.');
 
   app.listen(env.PORT, () => {
     console.log(`Mây Vegan API đang chạy tại http://localhost:${env.PORT}`);
